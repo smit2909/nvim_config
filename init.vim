@@ -39,7 +39,7 @@ augroup code_fmt
   "autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
   "autocmd BufWritePre *.py undojoin | Neoformat
   "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-  autocmd BufWritePost *.js,*.html,*.py FormatWrite
+  autocmd BufWritePost *.js,*.html,*.py,*.go FormatWrite
 augroup END
 
 augroup highlight_yank
@@ -67,6 +67,7 @@ Plug 'whatsthatsmell/codesmell_dark.vim'
 Plug 'davidcelis/vim-ariake-dark'
 Plug 'romainl/apprentice'
 Plug 'sts10/vim-pink-moon'
+Plug 'Shatur/neovim-ayu'
 "Plug 'romgrk/doom-one.vim'
 " note taking in vim
 Plug 'vimwiki/vimwiki'
@@ -76,9 +77,10 @@ Plug '/home/smit/.config/nvim/plugged/spacegray'
 Plug 'tpope/vim-dispatch'
 
 " TJ's statusline
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+"Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'romgrk/barbar.nvim'
 Plug 'Yggdroot/indentLine'
+Plug 'tjdevries/express_line.nvim'
 
 " code formatter and commenter
 Plug 'mhartington/formatter.nvim'

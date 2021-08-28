@@ -3,7 +3,7 @@ lua <<EOF
 -- require("treesitter-context.config").setup {enable=true}
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {"toml", "yaml", "json", "jsdoc", "bash", "regex", "html", "css", "javascript",
-                     "typescript", "tsx", "python", "lua"},
+                     "typescript", "tsx", "python", "lua", "go", "fish"},
   highlight = {
     enable = true,
   },

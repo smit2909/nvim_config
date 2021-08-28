@@ -24,6 +24,9 @@ local my_colors = {
   buddy_seagreen = '#698b69';
   gruvbox_dark_bg = '#1D2021';
   gruvbox_light_bg = '#3C3836';
+  gruvbuddy_bg = '#282c34';
+--  gruvbuddish_bg = '#232830';
+  gruvbuddish_bg = '#282c34';
 }
 
 -- Local helper functions
@@ -55,7 +58,7 @@ gls.left[1] = {
   RainbowRed = {
     --provider = function() return '▊ ' end,
     provider = function() return '  ' end,
-    highlight = {colors.blue,my_colors.gruvbox_light_bg}
+    highlight = {colors.blue,my_colors.gruvbuddish_bg}
   },
 }
 
@@ -74,7 +77,7 @@ gls.left[2] = {
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
       return '  '
     end,
-    highlight = {my_colors.buddy_red,my_colors.gruvbox_light_bg,'bold'},
+    highlight = {my_colors.buddy_red,my_colors.gruvbuddish_bg,'bold'},
   },
 }
 
@@ -82,7 +85,7 @@ gls.left[3] ={
   FileIcon = {
     provider = 'FileIcon',
     condition = condition.buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,my_colors.gruvbox_light_bg},
+    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,my_colors.gruvbuddish_bg},
   },
 }
 
@@ -102,14 +105,14 @@ gls.left[4] = {
             end
         end,
         condition = condition.buffer_not_empty,
-        highlight = { my_colors.buddy_violet, my_colors.gruvbox_light_bg, 'bold' },
+        highlight = { my_colors.buddy_violet, my_colors.gruvbuddish_bg, 'bold' },
     },
 }
 --gls.left[3] = {
   --FileSize = {
     --provider = 'FileSize',
     --condition = condition.buffer_not_empty,
-    --highlight = {colors.fg,my_colors.gruvbox_light_bg}
+    --highlight = {colors.fg,my_colors.gruvbuddish_bg}
   --}
 --}
 
@@ -117,7 +120,7 @@ gls.left[5] = {
   FileName = {
     provider = 'FileName',
     condition = condition.buffer_not_empty,
-    highlight = {my_colors.buddy_violet,my_colors.gruvbox_light_bg,'bold'}
+    highlight = {my_colors.buddy_violet,my_colors.gruvbuddish_bg,'bold'}
   }
 }
 
@@ -125,8 +128,8 @@ gls.left[6] = {
   LineInfo = {
     provider = 'LineColumn',
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {colors.fg,my_colors.gruvbox_light_bg},
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {colors.fg,my_colors.gruvbuddish_bg},
   },
 }
 
@@ -134,8 +137,8 @@ gls.left[7] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {colors.fg,my_colors.gruvbox_light_bg,'bold'},
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {colors.fg,my_colors.gruvbuddish_bg,'bold'},
   }
 }
 
@@ -143,14 +146,14 @@ gls.left[8] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
-    highlight = {my_colors.buddy_red,my_colors.gruvbox_light_bg}
+    highlight = {my_colors.buddy_red,my_colors.gruvbuddish_bg}
   }
 }
 gls.left[9] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
-    highlight = {my_colors.buddy_yellow,my_colors.gruvbox_light_bg},
+    highlight = {my_colors.buddy_yellow,my_colors.gruvbuddish_bg},
   }
 }
 
@@ -158,7 +161,7 @@ gls.left[10] = {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '  ',
-    highlight = {my_colors.buddy_cyan,my_colors.gruvbox_light_bg},
+    highlight = {my_colors.buddy_cyan,my_colors.gruvbuddish_bg},
   }
 }
 
@@ -166,7 +169,7 @@ gls.left[11] = {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
     icon = '  ',
-    highlight = {colors.cyan,my_colors.gruvbox_light_bg},
+    highlight = {colors.cyan,my_colors.gruvbuddish_bg},
   }
 }
 
@@ -181,7 +184,7 @@ gls.left[11] = {
       --return true
     --end,
     --icon = ' LSP:',
-    --highlight = {colors.cyan,my_colors.gruvbox_light_bg,'bold'}
+    --highlight = {colors.cyan,my_colors.gruvbuddish_bg,'bold'}
   --}
 --}
 
@@ -190,8 +193,8 @@ gls.right[1] = {
     provider = 'FileEncode',
     condition = condition.hide_in_width,
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {my_colors.buddy_cyan,my_colors.gruvbox_light_bg,'bold'}
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {my_colors.buddy_cyan,my_colors.gruvbuddish_bg,'bold'}
   }
 }
 
@@ -200,8 +203,8 @@ gls.right[2] = {
     provider = 'FileFormat',
     condition = condition.hide_in_width,
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {my_colors.buddy_cyan,my_colors.gruvbox_light_bg,'bold'}
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {my_colors.buddy_cyan,my_colors.gruvbuddish_bg,'bold'}
   }
 }
 
@@ -210,8 +213,8 @@ gls.right[3] = {
     provider = function() return '  ' end,
     condition = condition.check_git_workspace,
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {colors.buddy_violet,my_colors.gruvbox_light_bg,'bold'},
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {colors.buddy_violet,my_colors.gruvbuddish_bg,'bold'},
   }
 }
 
@@ -219,7 +222,7 @@ gls.right[4] = {
   GitBranch = {
     provider = 'GitBranch',
     condition = condition.check_git_workspace,
-    highlight = {my_colors.buddy_violet,my_colors.gruvbox_light_bg,'bold'},
+    highlight = {my_colors.buddy_violet,my_colors.gruvbuddish_bg,'bold'},
   }
 }
 
@@ -228,7 +231,7 @@ gls.right[5] = {
     provider = 'DiffAdd',
     condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {my_colors.buddy_green,my_colors.gruvbox_light_bg},
+    highlight = {my_colors.buddy_green,my_colors.gruvbuddish_bg},
   }
 }
 gls.right[6] = {
@@ -236,7 +239,7 @@ gls.right[6] = {
     provider = 'DiffModified',
     condition = condition.hide_in_width,
     icon = ' 柳',
-    highlight = {my_colors.buddy_orange,my_colors.gruvbox_light_bg},
+    highlight = {my_colors.buddy_orange,my_colors.gruvbuddish_bg},
   }
 }
 gls.right[7] = {
@@ -244,7 +247,7 @@ gls.right[7] = {
     provider = 'DiffRemove',
     condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {my_colors.buddy_red,my_colors.gruvbox_light_bg},
+    highlight = {my_colors.buddy_red,my_colors.gruvbuddish_bg},
   }
 }
 
@@ -252,7 +255,7 @@ gls.right[8] = {
   RainbowBlue = {
     --provider = function() return ' ▊' end,
     provider = function() return '  ' end,
-    highlight = {colors.blue,my_colors.gruvbox_light_bg}
+    highlight = {colors.blue,my_colors.gruvbuddish_bg}
   },
 }
 
@@ -260,8 +263,8 @@ gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
     separator = ' ',
-    separator_highlight = {'NONE',my_colors.gruvbox_light_bg},
-    highlight = {colors.blue,my_colors.gruvbox_light_bg,'bold'}
+    separator_highlight = {'NONE',my_colors.gruvbuddish_bg},
+    highlight = {colors.blue,my_colors.gruvbuddish_bg,'bold'}
   }
 }
 
@@ -269,13 +272,13 @@ gls.short_line_left[2] = {
   SFileName = {
     provider =  'SFileName',
     condition = condition.buffer_not_empty,
-    highlight = {colors.fg,my_colors.gruvbox_light_bg,'bold'}
+    highlight = {colors.fg,my_colors.gruvbuddish_bg,'bold'}
   }
 }
 
 gls.short_line_right[1] = {
   BufferIcon = {
     provider= 'BufferIcon',
-    highlight = {colors.fg,my_colors.gruvbox_light_bg}
+    highlight = {colors.fg,my_colors.gruvbuddish_bg}
   }
 }

@@ -38,8 +38,10 @@ set signcolumn=yes
 "set scrolloff=10
 
 "set list
-"set listchars=trail:⋅,eol:↲,tab:»\
-"set listchars=trail:⋅,space:⋅,eol:↲,tab:»\
+"set listchars=tab:>~
+"set list lcs=tab:»·
+"set listchars=trail:⋅,eol:↲,tab:»·
+"set listchars=eol:↲,
 
 set mouse=a
 let g:is_mouse_enabled = 1

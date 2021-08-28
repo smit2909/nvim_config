@@ -17,6 +17,15 @@ require('formatter').setup({
           }
         end
     },
+    go = {
+        -- gofmt
+       function()
+          return {
+            exe = "gofmt",
+            stdin = true
+          }
+        end
+    },
     javascript = {
         -- prettier
        function()

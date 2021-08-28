@@ -20,16 +20,17 @@ require'lspconfig'.html.setup{}
 require'lspconfig'.cssls.setup{}
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.bashls.setup{}
+require'lspconfig'.gopls.setup{}
 require 'lspsaga'
 
-require "lsp_signature".setup{
-    hint_enable = true, -- virtual hint enable
-    hint_prefix = "🐼 ",  -- Panda for parameter
-    hint_scheme = "String",
-    use_lspsaga = false,  -- set to true if you want to use lspsaga popup
-    hi_parameter = "Search", -- how your parameter will be highlight
-    use_lspsaga=true,
-    }
+-- require "lsp_signature".setup{
+--     hint_enable = true, -- virtual hint enable
+--     hint_prefix = "🐼 ",  -- Panda for parameter
+--     hint_scheme = "String",
+--     use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+--     hi_parameter = "Search", -- how your parameter will be highlight
+--     use_lspsaga=true,
+--     }
 require('smit.lspkind').init({
  with_text = true,
  symbol_map = {
@@ -56,7 +57,6 @@ require('smit.lspkind').init({
  },
 })
 
-
 EOF
 
 "require'lspconfig'.jedi_language_server.setup{ on_attach=require'completion'.on_attach }
@@ -74,7 +74,7 @@ nnoremap vsh <cmd>lua vim.lsp.buf.signature_help()<CR>
 "nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gr    <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent>vrn    <cmd>lua vim.lsp.buf.rename()<CR>
+"nnoremap <silent>vrn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
 " nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -86,6 +86,7 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 
 " lsp saga mappings
 nnoremap <silent>vrn :Lspsaga rename<CR>
+nnoremap <F2> :Lspsaga rename<CR>
 nnoremap <silent> K :Lspsaga hover_doc<CR>
 nnoremap <leader>vn <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
 "nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
@@ -115,5 +116,3 @@ let g:compe.source.vsnip = v:true
 let g:compe.source.emoji = v:true
 let g:compe.source.treesitter = v:true
 let g:compe.source.spell = v:true
-
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')

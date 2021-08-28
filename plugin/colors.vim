@@ -3,7 +3,10 @@
 " =====================================================================================================================
 
 lua <<EOF
-require('smit.evilline')
+-- require('smit.evilline')
+vim.g.ayu_mirage = true
+require('smit.updated_statusline')
+
 require('specs').setup{
     show_jumps  = true,
     min_jump = 20,
@@ -66,7 +69,7 @@ fun! ColorMyPencils()
     highlight ColorColumn ctermbg=0 guibg=#313335
 
     "transparent background
-    "highlight Normal guibg=none
+    highlight Normal guibg=none
 
     " transparent line number column and git column
     highlight clear LineNr
