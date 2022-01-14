@@ -36,13 +36,9 @@ augroup END
 
 augroup code_fmt
   autocmd!
-  "autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
-  "autocmd BufWritePre *.py undojoin | Neoformat
-  "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
   autocmd BufWritePre *.go lua goimports(100)
   "autocmd BufWritePost *.js,*.html,*.go,*.json,*.proto FormatWrite
   autocmd BufWritePost  *.go,*.py lua vim.lsp.buf.formatting_sync()
-  "autocmd BufWritePost *.js,*.html,*.py,*.go FormatWrite
 augroup END
 
 augroup highlight_yank
