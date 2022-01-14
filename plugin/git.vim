@@ -16,7 +16,8 @@ require('gitsigns').setup {
     ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>zz'"},
     ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>zz'"},
 
-    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    --['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['n <leader>hs'] = '<cmd>lua require"gitsigns".get_hunks()<CR>',
     ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
     ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
@@ -29,21 +30,23 @@ require('gitsigns').setup {
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
     ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
-  watch_index = {
-    interval = 1000,
-    follow_files = true
-  },
+  -- watch_index = {
+  --   interval = 1000,
+  --   follow_files = true
+  -- },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_internal_diff = true,  -- If luajit is present
+  numhl = true,
+  -- use_internal_diff = true,  -- If luajit is present
 }
 EOF
 
 set diffopt+=vertical
-nmap <Leader>ga :diffget //3<CR>
-nmap <Leader>gl :diffget //2<CR>
+nmap <leader>ga :lua require'gitsigns'.setqflist()<CR>
+"nmap <Leader>ga :diffget //3<CR>
+"nmap <Leader>gl :diffget //2<CR>
 nmap <Leader>gs :G<CR>
 nmap <Leader>gv :Gvdiffsplit<CR>
 nmap <Leader>gb :Gitsigns toggle_current_line_blame<CR>

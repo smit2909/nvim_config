@@ -6,4 +6,4 @@ let g:nerdtree_open = 0
 let g:nerdtree_tabs_open_on_gui_startup = 0  " this stops nerdtree from opening in gui version
 
 map <leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <leader>pv :NERDTreeFind<CR>
+nnoremap <silent> <leader>pv :NERDTreeFind<CR>zz

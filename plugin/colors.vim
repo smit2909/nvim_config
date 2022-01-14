@@ -3,17 +3,16 @@
 " =====================================================================================================================
 
 lua <<EOF
--- require('smit.evilline')
-vim.g.ayu_mirage = true
-require('smit.updated_statusline')
-
+require('smit.evilline')
+-- require("galaxyline.themes.spaceline")
+-- require('smit.updated_statusline')
 require('specs').setup{
     show_jumps  = true,
     min_jump = 20,
     popup = {
         delay_ms = 0, -- delay before popup displays
         inc_ms = 10, -- time increments used for fade/resize effects
-        blend = 40, -- starting blend, between 0-100 (fully transparent), see :h winblend
+        blend = 40, -- starting blend, between (fully opaque) 0-100, see :h winblend
         width = 20,
         winhl = "PMenu",
         fader = require('specs').linear_fader,
@@ -24,7 +23,11 @@ require('specs').setup{
         nofile = true,
     },
 }
--- require('smit.neoline')
+-- require("onedark").setup({
+--     dark_sidebar = true,
+--     highlight_linenumber=true,
+--     colors={bg='#1f2329', fg_linenumber='#5eacd3'}
+-- })
 EOF
 
 " colorscheme: need to set here to enable lsp coloring
@@ -43,22 +46,20 @@ fun! ColorMyPencils()
 
 
     let ayucolor='mirage'
-    lua require('colorbuddy').colorscheme('gruvbuddy')
+    "lua require('colorbuddy').colorscheme('gruvbuddy')
     set termguicolors
+    "let g:seoul256_background = 236
+    "let g:hybrid_custom_term_colors = 1
+    "let g:hybrid_reduced_contrast = 1
+    let g:doom_one_cursor_coloring=v:false
+
+    "let g:everforest_background = 'hard'
+    let g:onedark_style = 'darker'
+    let g:neosolarized_contrast = "high"
+    colorscheme darkplus
 
     let g:dracula_bold = 1
     let g:dracula_italic = 0
-    let g:doom_one_transparent_background=v:true
-    let g:doom_one_cursor_coloring=v:false
-    "colorscheme gruvbox
-    "colorscheme base16-nord
-    "colorscheme gruvbox8_hard
-    "colorscheme doom-one
-    "colorscheme codesmell_dark
-    "colorscheme spacegray
-    "colorscheme ariake
-    "colorscheme ariake-dark
-    "colorscheme apprentice
 
     if exists('+termguicolors')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -66,10 +67,11 @@ fun! ColorMyPencils()
     endif
 
     " color of the ruler
-    highlight ColorColumn ctermbg=0 guibg=#313335
+    "highlight ColorColumn ctermbg=0 guibg=#313335
+    "highlight ColorColumn ctermbg=0 guibg=#23272e
 
     "transparent background
-    highlight Normal guibg=none
+    "highlight Normal guibg=none
 
     " transparent line number column and git column
     highlight clear LineNr
@@ -94,17 +96,17 @@ fun! ColorMyPencils()
     "call ConfigureLightline()
 
     " for default colorscheme
-    if g:colors_name == 'default'
-        set t_Co=8
-        set t_md=
-        highlight Pmenu ctermbg=gray guibg=gray
-        "let g:lightline.colorscheme = '16color'
-    endif
+    "if g:colors_name == 'default'
+        "set t_Co=8
+        "set t_md=
+        "highlight Pmenu ctermbg=gray guibg=gray
+        ""let g:lightline.colorscheme = '16color'
+    "endif
 
 endfun
 
 call ColorMyPencils()
-"call MyDoomColorScheme()
+
 
 " =====================================================================================================================
 " BARBAR CONFIG
@@ -141,6 +143,11 @@ function BarbarSetup()
 
    if g:colors_name == "nord"
        let fg_modified = "#E5AB0E"
+   endif
+
+   if g:colors_name == "onedark"
+       let bg_inactive = "#1f2329"
+       let bg_modified = "#1f2329"
    endif
 
    "      Current: current buffer
@@ -249,4 +256,4 @@ function! s:hi(name, ...)
    end
 endfunc
 
-call BarbarSetup()
+"call BarbarSetup()

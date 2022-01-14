@@ -66,8 +66,14 @@ inoremap ? ?<c-g>u
 " Moving text around
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>k :m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
+
+" below keymaps conflict with window movements
+"nnoremap <leader>k :m .-2<CR>==
+"nnoremap <leader>j :m .+1<CR>==
+
+" stay in visual mode after indent --> greatest remap again
+vnoremap > >gv
+vnoremap < <gv
 
 " =====================================================================================================================
 " custom function remaps and Git keymaps
@@ -84,4 +90,8 @@ tnoremap jj <C-\><C-n>
 nnoremap <leader>vwm :call ColorMyPencils()<CR>
 
 " precommit hooks for rewards project
-nnoremap <silent> <leader>zz :Dispatch! pre-commit run reorder-python-imports --files %<CR>
+nnoremap <silent> <leader>zz :Dispatch! reorder-python-imports %<CR>
+nnoremap - zc<CR>
+nnoremap = zo<CR>
+
+" v/./d --> delete blank lines

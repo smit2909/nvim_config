@@ -35,3 +35,5 @@ require("toggleterm").setup{
 }
 
 EOF
+
+"nnoremap <C-t> :ToggleTermToggleAll<CR>

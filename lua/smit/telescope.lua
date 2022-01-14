@@ -1,4 +1,9 @@
 local actions = require('telescope.actions')
+local pickers = require "telescope.pickers"
+local finders = require "telescope.finders"
+local make_entry = require "telescope.make_entry"
+local conf = require("telescope.config").values
+
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -84,6 +89,114 @@ M.git_branches = function()
             return true
         end
     })
+end
+
+M.my_picker = function (opts)
+    -- this is the exact picker from source code of telescope nvim, with a few modification to server_results
+  local params = vim.lsp.util.make_position_params()
+  params.context = { includeDeclaration = true }
+
+  local results_lsp, err = vim.lsp.buf_request_sync(0, "textDocument/references", params, 10000)
+  if err then
+    vim.api.nvim_err_writeln("Error when finding references: " .. err)
+    return
+  end
+
+  local locations = {}
+  local new_server_result = {}
+
+  local filepath = vim.fn.expand('%')
+  local folder, filename, extension = filepath:match("^(.-)([^\\/]-)%.([^\\/%.]-)%.?$")
+
+  for _, server_results in pairs(results_lsp) do
+    if server_results.result then
+        --print(folder)
+        --for _, edits in ipairs(server_results.result) do
+            --if string.find(edits.uri, folder) then
+                --print("==========")
+                --print(edits.uri)
+                --print(folder)
+                --print("==========")
+            --end
+        --end
+        new_server_result = vim.tbl_filter(
+        function(r)
+            return string.find(r.uri, folder, 1, true)
+        end, server_results.result)
+        print("Number of references in "..folder.." > "..#new_server_result)
+      vim.list_extend(locations, vim.lsp.util.locations_to_items(new_server_result) or {})
+    end
+  end
+
+  if vim.tbl_isempty(locations) then
+    return
+  end
+  -- print(vim.inspect(locations))
+
+  pickers.new(opts, {
+    prompt_title = "Filtered LSP References",
+    finder = finders.new_table {
+      results = locations,
+      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
+    },
+    previewer = conf.qflist_previewer(opts),
+    sorter = conf.generic_sorter(opts),
+  }):find()
+end
+
+local function HunkToLocation(hunk)
+    local location = {}
+    location.col = 0
+    if hunk.type == 'add' then
+        location.lnum = hunk.added.start
+        location.text = 'Added: ' .. hunk.added.lines[1]
+    elseif hunk.type == 'change' then
+        location.lnum = hunk.added.start
+        location.text = 'Changed: ' .. hunk.added.lines[1]
+    elseif hunk.type == 'delete' then
+        location.lnum = hunk.removed.start
+        location.text = 'Deleted: ' .. hunk.removed.lines[1]
+    end
+
+    location.lnum = hunk.added.start
+    return location
+end
+
+local function ChangedHunks()
+    local op = require'gitsigns'.get_hunks()
+    local filepath = vim.fn.expand('%')
+    local output = {}
+
+    if op == nil then
+        return output
+    end
+
+    for _, x in ipairs(op) do
+        local loc = HunkToLocation(x)
+        loc.filename = filepath
+        table.insert(output, loc)
+    end
+    return output
+end
+
+M.hunk_picker = function (opts)
+
+  local locations = ChangedHunks()
+
+  if vim.tbl_isempty(locations) then
+    return
+  end
+  -- print(vim.inspect(locations))
+
+  pickers.new(opts, {
+    prompt_title = "Changed Hunks",
+    finder = finders.new_table {
+      results = locations,
+      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
+    },
+    previewer = conf.qflist_previewer(opts),
+    sorter = conf.generic_sorter(opts),
+  }):find()
 end
 
 return M

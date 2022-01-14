@@ -1,3 +1,6 @@
+set nofoldenable
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 lua <<EOF
 -- require("twilight").setup {}
 -- require("treesitter-context.config").setup {enable=true}
@@ -23,6 +26,9 @@ require'nvim-treesitter.configs'.setup {
     ["[M"] = "@function.outer",
     ["[]"] = "@class.outer",
   },
+  folding = {
+      enable = true,
+      }
 }
 -- pyfold = {
 -- enable = true,

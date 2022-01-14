@@ -1,12 +1,11 @@
 "set guicursor=
 set noerrorbells
-"set foldmethod=expr
-"set foldexpr=nvim_treesitter#foldexpr()
-"set foldnestmax=3
-"set foldlevel=20
 set clipboard=unnamedplus
 filetype plugin indent on
-
+set foldlevel=99
+" to toggle between relative and regular numbers, use command
+" :set nu!
+" OR :set rnu!
 set nu
 set relativenumber
 

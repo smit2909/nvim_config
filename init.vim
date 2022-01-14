@@ -39,12 +39,15 @@ augroup code_fmt
   "autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
   "autocmd BufWritePre *.py undojoin | Neoformat
   "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-  autocmd BufWritePost *.js,*.html,*.py,*.go FormatWrite
+  autocmd BufWritePre *.go lua goimports(100)
+  "autocmd BufWritePost *.js,*.html,*.go,*.json,*.proto FormatWrite
+  autocmd BufWritePost  *.go,*.py lua vim.lsp.buf.formatting_sync()
+  "autocmd BufWritePost *.js,*.html,*.py,*.go FormatWrite
 augroup END
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 120})
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 80})
 augroup END
 
 " =====================================================================================================================
@@ -56,52 +59,66 @@ call plug#begin('~/.config/nvim/plugged')
 
 " color schemes
 Plug 'tjdevries/colorbuddy.vim'
-Plug 'rktjmp/lush.nvim'
-Plug 'npxbr/gruvbox.nvim'
-Plug 'jim-at-jibba/ariake-vim-colors'
+"Plug 'npxbr/gruvbox.nvim'
+Plug 'rktjmp/lush.nvim' " gruvbox dependency
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'tjdevries/gruvbuddy.nvim'
-Plug 'lifepillar/vim-gruvbox8'
 Plug 'NTBBloodbath/doom-one.nvim'
-Plug 'chriskempson/base16-vim'
+Plug 'tanvirtin/monokai.nvim'
+Plug 'Th3Whit3Wolf/spacebuddy'
+Plug '/home/smit/.config/nvim/plugged/onedarker'
+Plug 'ful1e5/onedark.nvim'
 Plug 'whatsthatsmell/codesmell_dark.vim'
-Plug 'davidcelis/vim-ariake-dark'
-Plug 'romainl/apprentice'
-Plug 'sts10/vim-pink-moon'
-Plug 'Shatur/neovim-ayu'
-"Plug 'romgrk/doom-one.vim'
+Plug 'martinsione/darkplus.nvim'
+" Using Vim-Plug
+Plug 'rmagatti/goto-preview'
+
 " note taking in vim
 Plug 'vimwiki/vimwiki'
-Plug '/home/smit/.config/nvim/plugged/spacegray'
 
 " dispatch
 Plug 'tpope/vim-dispatch'
 
 " TJ's statusline
-"Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'NTBBloodbath/galaxyline.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'Yggdroot/indentLine'
-Plug 'tjdevries/express_line.nvim'
+"Plug 'lukas-reineke/indent-blankline.nvim'
+"Plug 'tjdevries/express_line.nvim'
 
 " code formatter and commenter
-Plug 'mhartington/formatter.nvim'
-Plug 'scrooloose/syntastic'
-Plug 'nvie/vim-flake8'
+"Plug 'mhartington/formatter.nvim'
+"Plug 'scrooloose/syntastic'
+"Plug 'nvie/vim-flake8'
 Plug 'preservim/nerdcommenter' " keymaps for code commenting
 
 " lsp plugins
-Plug 'ray-x/lsp_signature.nvim'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'glepnir/lspsaga.nvim'
+"Plug 'hrsh7th/nvim-compe'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-calc'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind-nvim'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+"Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'anott03/nvim-lspinstall'
+Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 "Plug 'ThePrimeagen/refactoring.nvim'
-Plug 'folke/lsp-colors.nvim'
+"Plug 'folke/lsp-colors.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " coc
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 "Plug 'simrat39/symbols-outline.nvim'
 
 " nerdtree and its extensions
@@ -114,6 +131,7 @@ Plug 'ryanoasis/vim-devicons'
 " git plugin
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'sindrets/diffview.nvim'
 
 " terminal toggle
 Plug 'akinsho/nvim-toggleterm.lua'
@@ -135,14 +153,14 @@ Plug 'nvim-lua/plenary.nvim'
 
 " miscellaoeous vim utils
 Plug 'vim-utils/vim-man'  " man pages for vim
-Plug 'nvim-lua/popup.nvim'
-Plug 'ThePrimeagen/harpoon'
 Plug 'edluffy/specs.nvim'
+Plug 'folke/todo-comments.nvim'
 
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-dispatch'
 Plug 'szw/vim-maximizer' " maximize current buffer, default F3
 Plug 'glepnir/dashboard-nvim'
+
 call plug#end()
 
 
@@ -173,7 +191,6 @@ endfor
 " Fonts for neovide
 " =====================================================================================================================
 let g:neovide_cursor_vfx_mode = "railgun"
-set guifont=Jetbrains\ Mono:h13
-"set guifont=mononoki\ Nerd\ Font\ Mono:h14
+"set guifont=JetbrainsMono\ Nerd\ Font:h11
 "set guifont=FiraCode\ NerdFont\ Mono:h12
-"set guifont=Source\ Code\ Pro\ Medium:h13
+set guifont=Source\ Code\ Pro:h12
