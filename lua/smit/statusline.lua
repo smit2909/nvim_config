@@ -18,65 +18,65 @@ local has_lsp_extensions, ws_diagnostics = pcall(require, "lsp_extensions.worksp
 -- Show telescope icon / emoji when you open it as well
 
 local git_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
-  local icon = extensions.file_icon(_, bufnr)
-  if icon then
-    return icon .. " "
-  end
+    local icon = extensions.file_icon(_, bufnr)
+    if icon then
+        return icon .. " "
+    end
 
-  return ""
+    return ""
 end)
 
 local git_branch = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
-  local branch = extensions.git_branch(window, buffer)
-  if branch then
-    return " " .. extensions.git_icon() .. " " .. branch
-  end
+    local branch = extensions.git_branch(window, buffer)
+    if branch then
+        return " " .. extensions.git_icon() .. " " .. branch
+    end
 end)
 
 local git_changes = subscribe.buf_autocmd("el_git_changes", "BufWritePost", function(window, buffer)
-  return extensions.git_changes(window, buffer)
+    return extensions.git_changes(window, buffer)
 end)
 
 local ws_diagnostic_counts = function(_, buffer)
-  if not has_lsp_extensions then
-    return ""
-  end
+    if not has_lsp_extensions then
+        return ""
+    end
 
-  local messages = {}
+    local messages = {}
 
-  local error_count = ws_diagnostics.get_count(buffer.bufnr, "Error")
+    local error_count = ws_diagnostics.get_count(buffer.bufnr, "Error")
 
-  local x = "⬤"
-  if error_count == 0 then
-    -- pass
-  elseif error_count < 5 then
-    table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError" .. error_count, x))
-  else
-    table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError5", x))
-  end
+    local x = "⬤"
+    if error_count == 0 then
+        -- pass
+    elseif error_count < 5 then
+        table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError" .. error_count, x))
+    else
+        table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError5", x))
+    end
 
-  return table.concat(messages, "")
+    return table.concat(messages, "")
 end
 
 local show_current_func = function(window, buffer)
-  if buffer.filetype == "lua" then
-    return ""
-  end
+    if buffer.filetype == "lua" then
+        return ""
+    end
 
-  return lsp_statusline.current_function(window, buffer)
+    return lsp_statusline.current_function(window, buffer)
 end
 
 local minimal_status_line = function(_, buffer)
-  if string.find(buffer.name, "sourcegraph/sourcegraph") then
-    return true
-  end
+    if string.find(buffer.name, "sourcegraph/sourcegraph") then
+        return true
+    end
 end
 
 require("el").setup {
   generator = function(window, buffer)
-    local is_minimal = minimal_status_line(window, buffer)
+      local is_minimal = minimal_status_line(window, buffer)
 
-    local items = {
+      local items = {
       { extensions.gen_mode { format_string = " %s " }, required = true },
       { git_branch },
       { " " },
@@ -103,22 +103,22 @@ require("el").setup {
         },
       },
       { builtin.filetype },
-    }
+      }
 
-    local add_item = function(result, item)
-      if is_minimal and not item.required then
-        return
+      local add_item = function(result, item)
+          if is_minimal and not item.required then
+              return
+          end
+
+          table.insert(result, item)
       end
 
-      table.insert(result, item)
-    end
+      local result = {}
+      for _, item in ipairs(items) do
+          add_item(result, item)
+      end
 
-    local result = {}
-    for _, item in ipairs(items) do
-      add_item(result, item)
-    end
-
-    return result
+      return result
   end,
 }
 
@@ -172,65 +172,65 @@ local has_lsp_extensions, ws_diagnostics = pcall(require, "lsp_extensions.worksp
 -- Show telescope icon / emoji when you open it as well
 
 local git_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
-  local icon = extensions.file_icon(_, bufnr)
-  if icon then
-    return icon .. " "
-  end
+    local icon = extensions.file_icon(_, bufnr)
+    if icon then
+        return icon .. " "
+    end
 
-  return ""
+    return ""
 end)
 
 local git_branch = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
-  local branch = extensions.git_branch(window, buffer)
-  if branch then
-    return " " .. extensions.git_icon() .. " " .. branch
-  end
+    local branch = extensions.git_branch(window, buffer)
+    if branch then
+        return " " .. extensions.git_icon() .. " " .. branch
+    end
 end)
 
 local git_changes = subscribe.buf_autocmd("el_git_changes", "BufWritePost", function(window, buffer)
-  return extensions.git_changes(window, buffer)
+    return extensions.git_changes(window, buffer)
 end)
 
 local ws_diagnostic_counts = function(_, buffer)
-  if not has_lsp_extensions then
-    return ""
-  end
+    if not has_lsp_extensions then
+        return ""
+    end
 
-  local messages = {}
+    local messages = {}
 
-  local error_count = ws_diagnostics.get_count(buffer.bufnr, "Error")
+    local error_count = ws_diagnostics.get_count(buffer.bufnr, "Error")
 
-  local x = "⬤"
-  if error_count == 0 then
-    -- pass
-  elseif error_count < 5 then
-    table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError" .. error_count, x))
-  else
-    table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError5", x))
-  end
+    local x = "⬤"
+    if error_count == 0 then
+        -- pass
+    elseif error_count < 5 then
+        table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError" .. error_count, x))
+    else
+        table.insert(messages, string.format("%s#%s#%s%%*", "%", "StatuslineError5", x))
+    end
 
-  return table.concat(messages, "")
+    return table.concat(messages, "")
 end
 
 local show_current_func = function(window, buffer)
-  if buffer.filetype == "lua" then
-    return ""
-  end
+    if buffer.filetype == "lua" then
+        return ""
+    end
 
-  return lsp_statusline.current_function(window, buffer)
+    return lsp_statusline.current_function(window, buffer)
 end
 
 local minimal_status_line = function(_, buffer)
-  if string.find(buffer.name, "sourcegraph/sourcegraph") then
-    return true
-  end
+    if string.find(buffer.name, "sourcegraph/sourcegraph") then
+        return true
+    end
 end
 
 require("el").setup {
   generator = function(window, buffer)
-    local is_minimal = minimal_status_line(window, buffer)
+      local is_minimal = minimal_status_line(window, buffer)
 
-    local items = {
+      local items = {
       { extensions.gen_mode { format_string = " %s " }, required = true },
       { git_branch },
       { " " },
@@ -257,22 +257,22 @@ require("el").setup {
         },
       },
       { builtin.filetype },
-    }
+      }
 
-    local add_item = function(result, item)
-      if is_minimal and not item.required then
-        return
+      local add_item = function(result, item)
+          if is_minimal and not item.required then
+              return
+          end
+
+          table.insert(result, item)
       end
 
-      table.insert(result, item)
-    end
+      local result = {}
+      for _, item in ipairs(items) do
+          add_item(result, item)
+      end
 
-    local result = {}
-    for _, item in ipairs(items) do
-      add_item(result, item)
-    end
-
-    return result
+      return result
   end,
 }
 
@@ -308,4 +308,3 @@ let s:right_sep = ' ❮❮ '
         let s:seperator.EndSeperate = ' '
         let s:seperator.emptySeperate1 = ''
 --]]
-

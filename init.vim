@@ -38,7 +38,7 @@ augroup code_fmt
   autocmd!
   autocmd BufWritePre *.go lua goimports(100)
   "autocmd BufWritePost *.js,*.html,*.go,*.json,*.proto FormatWrite
-  autocmd BufWritePost  *.go,*.py lua vim.lsp.buf.formatting_sync()
+  autocmd BufWritePre  *.go,*.py,*.proto,*.lua lua vim.lsp.buf.formatting_sync(nil, 3000)
 augroup END
 
 augroup highlight_yank
@@ -52,7 +52,12 @@ augroup END
 
 " anything between call plug#begin() and call plug#end() will be installed
 call plug#begin('~/.config/nvim/plugged')
+" For faster loading
+Plug 'lewis6991/impatient.nvim'
+"call plug#end()
+"lua require('impatient')
 
+"call plug#begin('~/.config/nvim/plugged')
 " color schemes
 Plug 'tjdevries/colorbuddy.vim'
 "Plug 'npxbr/gruvbox.nvim'
@@ -62,10 +67,14 @@ Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'tanvirtin/monokai.nvim'
 Plug 'Th3Whit3Wolf/spacebuddy'
-Plug '/home/smit/.config/nvim/plugged/onedarker'
-Plug 'ful1e5/onedark.nvim'
+"Plug '/home/smit/.config/nvim/plugged/onedarker'
+"Plug 'ful1e5/onedark.nvim'
 Plug 'whatsthatsmell/codesmell_dark.vim'
-Plug 'martinsione/darkplus.nvim'
+"Plug 'martinsione/darkplus.nvim'
+"Plug 'kyazdani42/nvim-palenight.lua'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'marko-cerovac/material.nvim'
+
 " Using Vim-Plug
 Plug 'rmagatti/goto-preview'
 
@@ -79,9 +88,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'NTBBloodbath/galaxyline.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'Yggdroot/indentLine'
-"Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 "Plug 'tjdevries/express_line.nvim'
-
+"Plug 'tjdevries/nlua.nvim'
 " code formatter and commenter
 "Plug 'mhartington/formatter.nvim'
 "Plug 'scrooloose/syntastic'
@@ -89,9 +98,13 @@ Plug 'Yggdroot/indentLine'
 Plug 'preservim/nerdcommenter' " keymaps for code commenting
 
 " lsp plugins
-Plug 'kabouzeid/nvim-lspinstall'
+"Plug 'kabouzeid/nvim-lspinstall'
+"Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
 "Plug 'hrsh7th/nvim-compe'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'j-hui/fidget.nvim'
+
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -143,6 +156,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'natecraddock/telescope-zf-native.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'milkypostman/vim-togglelist'
 Plug 'nvim-lua/plenary.nvim'
@@ -187,6 +202,24 @@ endfor
 " Fonts for neovide
 " =====================================================================================================================
 let g:neovide_cursor_vfx_mode = "railgun"
-"set guifont=JetbrainsMono\ Nerd\ Font:h11
+set guifont=JetbrainsMono\ Nerd\ Font:h11
+"set guifont=Input\ Mono:h11
 "set guifont=FiraCode\ NerdFont\ Mono:h12
-set guifont=Source\ Code\ Pro:h12
+"set guifont=Hack\ Nerd\ Font:h12
+
+
+" =====================================================================================================================
+" lua require
+" =====================================================================================================================
+lua require("smit.lsp")
+lua require("smit.null_ls")
+lua require("smit.lspkind")
+lua require("smit.cmp")
+lua require("smit.lsp_signature")
+lua require("smit.goto_preview")
+lua require("smit.telescope")
+lua require("smit.git")
+lua require("smit.fidget")
+lua require("smit.todo")
+lua require("smit.toggleterm")
+lua require("smit.treesitter")

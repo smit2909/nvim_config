@@ -75,6 +75,11 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap > >gv
 vnoremap < <gv
 
+" remove empty lines from selected text
+vnoremap <leader>rs :g/^\s*$/d<CR>
+
+" toggle relative line numbers
+map <f5> :set relativenumber!<cr>
 " =====================================================================================================================
 " custom function remaps and Git keymaps
 " =====================================================================================================================
@@ -93,5 +98,3 @@ nnoremap <leader>vwm :call ColorMyPencils()<CR>
 nnoremap <silent> <leader>zz :Dispatch! reorder-python-imports %<CR>
 nnoremap - zc<CR>
 nnoremap = zo<CR>
-
-" v/./d --> delete blank lines

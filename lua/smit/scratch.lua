@@ -2,7 +2,6 @@ local f = function()
     local x = 5
     print(x)
 end
-
 function GlobalFunction(opts)
     local position_params = vim.lsp.util.make_position_params()
     print("I am, herererere")
@@ -15,9 +14,7 @@ function GlobalFunction(opts)
         print(vim.inspect(result))
         print("=========================")
 
-        if result == nil then
-            return
-        end
+        if result == nil then return end
 
         local entries = {}
         if result.changes then
@@ -32,13 +29,8 @@ function GlobalFunction(opts)
 
                 for _, edit in ipairs(edits) do
                     local start_line = edit.range.start.line + 1
-                    local line = vim.api.nvim_buf_get_lines(bufnr, start_line-1, start_line, false)[1]
-                    table.insert(entries, {
-                        bufnr = buffnr,
-                        lnum = edit.range.start.line + 1,
-                        col = edit.range.start.character + 1,
-                        text = line
-                    })
+                    local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+                    table.insert(entries, {bufnr = buffnr, lnum = edit.range.start.line + 1, col = edit.range.start.character + 1, text = line})
                 end
             end
         end
@@ -79,3 +71,14 @@ function Glob()
     return output
 end
 
+function GetTab()
+    local tablist = vim.api.nvim_list_tabpages()
+    print("All tabs --> ", vim.inspect(tablist))
+    local lentabs = #tablist
+    if lentabs > 1 then
+        vim.api.nvim_command("DiffviewClose")
+        return
+    end
+    vim.api.nvim_command("DiffviewOpen")
+    return
+end
