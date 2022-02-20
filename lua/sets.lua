@@ -1,3 +1,4 @@
+vim.cmd [[
 "set guicursor=
 set noerrorbells
 set clipboard=unnamedplus
@@ -63,3 +64,5 @@ autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set sho
 set nofoldenable
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+]]

@@ -70,7 +70,7 @@ Plug 'Th3Whit3Wolf/spacebuddy'
 "Plug '/home/smit/.config/nvim/plugged/onedarker'
 "Plug 'ful1e5/onedark.nvim'
 Plug 'whatsthatsmell/codesmell_dark.vim'
-"Plug 'martinsione/darkplus.nvim'
+Plug 'martinsione/darkplus.nvim'
 "Plug 'kyazdani42/nvim-palenight.lua'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'marko-cerovac/material.nvim'
@@ -89,19 +89,11 @@ Plug 'NTBBloodbath/galaxyline.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim'
-"Plug 'tjdevries/express_line.nvim'
-"Plug 'tjdevries/nlua.nvim'
-" code formatter and commenter
-"Plug 'mhartington/formatter.nvim'
-"Plug 'scrooloose/syntastic'
-"Plug 'nvie/vim-flake8'
+Plug 'folke/lua-dev.nvim'
 Plug 'preservim/nerdcommenter' " keymaps for code commenting
 
 " lsp plugins
-"Plug 'kabouzeid/nvim-lspinstall'
-"Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
-"Plug 'hrsh7th/nvim-compe'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'j-hui/fidget.nvim'
 
@@ -120,13 +112,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'anott03/nvim-lspinstall'
 Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-"Plug 'ThePrimeagen/refactoring.nvim'
-"Plug 'folke/lsp-colors.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
-" coc
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 "Plug 'simrat39/symbols-outline.nvim'
 
@@ -181,7 +168,6 @@ call plug#end()
 " Disable auto indent while pasting
 " source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
@@ -199,18 +185,9 @@ for key in ['<Up>', '<Down>', '<Left>', '<Right>']
 endfor
 
 " =====================================================================================================================
-" Fonts for neovide
-" =====================================================================================================================
-let g:neovide_cursor_vfx_mode = "railgun"
-set guifont=JetbrainsMono\ Nerd\ Font:h11
-"set guifont=Input\ Mono:h11
-"set guifont=FiraCode\ NerdFont\ Mono:h12
-"set guifont=Hack\ Nerd\ Font:h12
-
-
-" =====================================================================================================================
 " lua require
 " =====================================================================================================================
+lua require("smit.colors")
 lua require("smit.lsp")
 lua require("smit.null_ls")
 lua require("smit.lspkind")
@@ -223,3 +200,4 @@ lua require("smit.fidget")
 lua require("smit.todo")
 lua require("smit.toggleterm")
 lua require("smit.treesitter")
+lua require("smit.evilline")

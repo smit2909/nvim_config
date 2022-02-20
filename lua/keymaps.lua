@@ -1,0 +1,7 @@
+require("keymaps.greatest_keymaps")
+require("keymaps.git")
+require("keymaps.telescope")
+require("keymaps.navigation")
+require("keymaps.lsp")
+require("keymaps.misc")
+require("keymaps.nerdtree")

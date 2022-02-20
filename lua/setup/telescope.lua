@@ -12,24 +12,13 @@ require('telescope').setup {
         file_sorter = sorters.get_fzy_sorter,
         prompt_prefix = ' >',
         color_devicons = true,
-
-        file_previewer   = previewers.vim_buffer_cat.new,
-        grep_previewer   = previewers.vim_buffer_vimgrep.new,
+        file_previewer = previewers.vim_buffer_cat.new,
+        grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
 
-        mappings = {
-            i = {
-                ["<C-x>"] = false,
-                ["<C-q>"] = actions.send_to_qflist,
-            },
-        }
+        mappings = { i = { ["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist } }
     },
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        }
-    }
+    extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } }
 }
 
 function set_background(content)
@@ -40,20 +29,14 @@ require('telescope').load_extension('fzy_native')
 
 local M = {}
 M.search_dotfiles = function()
-    builtin.find_files({
-        prompt_title = "< VimRC >",
-        cwd = "~/work/nvim/",
-    })
+    builtin.find_files({ prompt_title = "< VimRC >", cwd = "~/work/nvim/" })
 end
 
 local function select_background(prompt_bufnr, map)
     local function set_the_background(close)
-        local content =
-        require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+        local content = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
         set_background(content.cwd .. "/" .. content.value)
-        if close then
-            require('telescope.actions').close(prompt_bufnr)
-        end
+        if close then require('telescope.actions').close(prompt_bufnr) end
     end
 
     map('i', '<C-p>', function()
@@ -113,17 +96,16 @@ M.my_picker = function(opts)
 
     for _, server_results in pairs(results_lsp) do
         if server_results.result then
-            --print(folder)
-            --for _, edits in ipairs(server_results.result) do
-            --if string.find(edits.uri, folder) then
-            --print("==========")
-            --print(edits.uri)
-            --print(folder)
-            --print("==========")
-            --end
-            --end
-            new_server_result = vim.tbl_filter(
-            function(r)
+            -- print(folder)
+            -- for _, edits in ipairs(server_results.result) do
+            -- if string.find(edits.uri, folder) then
+            -- print("==========")
+            -- print(edits.uri)
+            -- print(folder)
+            -- print("==========")
+            -- end
+            -- end
+            new_server_result = vim.tbl_filter(function(r)
                 return string.find(r.uri, folder, 1, true)
             end, server_results.result)
             print("Number of references in " .. folder .. " > " .. #new_server_result)
@@ -131,19 +113,14 @@ M.my_picker = function(opts)
         end
     end
 
-    if vim.tbl_isempty(locations) then
-        return
-    end
+    if vim.tbl_isempty(locations) then return end
     -- print(vim.inspect(locations))
 
     pickers.new(opts, {
-    prompt_title = "Filtered LSP References",
-    finder = finders.new_table {
-      results = locations,
-      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-    },
-    previewer = conf.qflist_previewer(opts),
-    sorter = conf.generic_sorter(opts),
+        prompt_title = "Filtered LSP References",
+        finder = finders.new_table { results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts) },
+        previewer = conf.qflist_previewer(opts),
+        sorter = conf.generic_sorter(opts)
     }):find()
 end
 
@@ -170,9 +147,7 @@ local function ChangedHunks()
     local filepath = vim.fn.expand('%')
     local output = {}
 
-    if op == nil then
-        return output
-    end
+    if op == nil then return output end
 
     for _, x in ipairs(op) do
         local loc = HunkToLocation(x)
@@ -186,19 +161,14 @@ M.hunk_picker = function(opts)
 
     local locations = ChangedHunks()
 
-    if vim.tbl_isempty(locations) then
-        return
-    end
+    if vim.tbl_isempty(locations) then return end
     -- print(vim.inspect(locations))
 
     pickers.new(opts, {
-    prompt_title = "Changed Hunks",
-    finder = finders.new_table {
-      results = locations,
-      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-    },
-    previewer = conf.qflist_previewer(opts),
-    sorter = conf.generic_sorter(opts),
+        prompt_title = "Changed Hunks",
+        finder = finders.new_table { results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts) },
+        previewer = conf.qflist_previewer(opts),
+        sorter = conf.generic_sorter(opts)
     }):find()
 end
 
@@ -211,25 +181,22 @@ M.changed_on_branch = function()
             get_command = function(entry)
                 return { 'bash', '/home/smit/personal/myscripts/git_branch_modified.sh', 'diff', entry.value }
             end
-        },
+        }
     }:find()
 end
 
-
 local delta_previewer = previewers.new_termopen_previewer {
-  get_command = function(entry)
-      -- this is for status
-      -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
-      -- just do an if and return a different command
-      if entry.status == '??' or 'A ' then
-          return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value }
-      end
+    get_command = function(entry)
+        -- this is for status
+        -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
+        -- just do an if and return a different command
+        if entry.status == '??' or 'A ' then return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value } end
 
-      -- note we can't use pipes
-      -- this command is for git_commits and git_bcommits
-      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
+        -- note we can't use pipes
+        -- this command is for git_commits and git_bcommits
+        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
 
-  end
+    end
 }
 
 M.my_git_status = function(opts)
@@ -239,7 +206,6 @@ M.my_git_status = function(opts)
     builtin.git_status(opts)
 end
 
-
 M.search_in_curr_file_dir = function()
     -- search for a word in folder which the current buffer resides
     filepath = vim.fn.expand('%')
@@ -248,7 +214,7 @@ M.search_in_curr_file_dir = function()
         require('telescope.builtin').grep_string { search = vim.fn.input("Grep for > ") }
     else
         preview_string = "Grep in " .. folder .. " for > "
-        require('telescope.builtin').grep_string { search_dirs = { folder, }, search = vim.fn.input(preview_string) }
+        require('telescope.builtin').grep_string { search_dirs = { folder }, search = vim.fn.input(preview_string) }
     end
 end
 

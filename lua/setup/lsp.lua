@@ -51,26 +51,6 @@ require('lspconfig')['gopls'].setup {
     -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git", ".gitignore", "README.md"),
 }
 
-local sumneko_binary = "/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server"
-local sumneko_root_path = "/home/smit/lua_lsp_source/lua-language-server/main.lua"
-print(vim.inspect(vim.fn.expand('$VIMRUNTIME/lua')))
-require('lspconfig').sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path},
-    settings = {
-        lua = {
-            runtime = {version = 'LuaJIT', path = runtime_path},
-            diagnostics = {globals = {'vim'}},
-            workspace = {library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}},
-            telemetry = {enable = false}
-        }
-    },
-    globals = {"vim"},
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-    end
-}
-
 function goimports(timeout_ms)
     local context = {only = {"source.organizeImports"}}
     vim.validate {context = {context, "t", true}}
@@ -96,6 +76,18 @@ function goimports(timeout_ms)
         vim.lsp.buf.execute_command(action)
     end
 end
+
+local luadev = require("lua-dev").setup({
+    lspconfig = {
+        cmd = {"/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server"},
+        on_attach = function(client)
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+        end
+    }
+})
+
+require('lspconfig')['sumneko_lua'].setup(luadev)
 
 -- ============================================================================================================
 -- diagnostic settings
