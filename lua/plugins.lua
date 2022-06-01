@@ -1,22 +1,41 @@
 vim.cmd [[packadd packer.nvim]]
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- vim.cmd [[
+-- augroup packer_user_config
+-- autocmd!
+-- autocmd BufWritePost plugins.lua source <afile> | PackerSync
+-- augroup end
+-- ]]
+
+require('packer').init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float {border = "rounded"}
+        end
+    },
+    git = {
+        clone_timeout = 300 -- 5 mins
+    },
+    profile = {enable = true}
+}
+
 return require('packer').startup(function(use)
     use 'lewis6991/impatient.nvim'
     require('impatient')
     -- color scheme and related stuff
-    use { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
-    use { 'tjdevries/gruvbuddy.nvim', requires = { 'tjdevries/colorbuddy.vim' } }
-    use 'NTBBloodbath/doom-one.nvim'
-    use 'tanvirtin/monokai.nvim'
-    use 'Th3Whit3Wolf/spacebuddy'
-    use 'whatsthatsmell/codesmell_dark.vim'
-    use 'martinsione/darkplus.nvim'
-    use 'drewtempelmeyer/palenight.vim'
-    use 'marko-cerovac/material.nvim'
-
+    use {'tjdevries/gruvbuddy.nvim', requires = {'tjdevries/colorbuddy.vim'}}
+    use {'christianchiarulli/nvcode-color-schemes.vim'}
+    use {'jsit/toast.vim'}
+    use {'RRethy/nvim-base16'}
+    use {'luisiacc/gruvbox-baby'}
+    use {'daschw/leaf.nvim'}
+    use {'sainnhe/sonokai'}
+    use {'arzg/vim-colors-xcode'}
+    use {'doums/darcula'}
     -- statusline, indentline, barbar
     use 'NTBBloodbath/galaxyline.nvim'
-    use { 'romgrk/barbar.nvim', event = 'VimEnter' }
+    use {'romgrk/barbar.nvim'}
     use 'lukas-reineke/indent-blankline.nvim'
 
     -- lsp stuff
@@ -28,7 +47,6 @@ return require('packer').startup(function(use)
     use 'j-hui/fidget.nvim'
     use 'onsails/lspkind-nvim'
     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-    use 'simrat39/symbols-outline.nvim'
 
     -- cmp stuff
     use {
@@ -47,33 +65,37 @@ return require('packer').startup(function(use)
     -- git stuff
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
-    use { 'sindrets/diffview.nvim', opt = true, cmd = { "DiffviewOpen", "DiffviewClose" } }
+    use {'sindrets/diffview.nvim', opt = true, cmd = {"DiffviewOpen", "DiffviewClose"}}
 
     -- terminal toggle
-    use 'akinsho/nvim-toggleterm.lua'
+    use {'akinsho/nvim-toggleterm.lua', opt = true, cmd = {"ToggleTerm", "ToggleTermToggleAll"}}
 
     -- treesitter and its plugins
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     -- telescope and its extensions
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim', 'nvim-telescope/telescope-fzy-native.nvim' },
+        requires = {
+            'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim', 'nvim-telescope/telescope-fzy-native.nvim', 'nvim-telescope/telescope-media-files.nvim'
+        }
     }
+    use "ahmedkhalf/project.nvim"
 
     -- miscellaoeous vim utils
     use 'milkypostman/vim-togglelist'
-    use 'liuchengxu/vista.vim'
+    use {'liuchengxu/vista.vim', opt = true, cmd = {"Vista"}}
     use 'preservim/nerdcommenter'
     use 'edluffy/specs.nvim'
     use 'folke/todo-comments.nvim'
-    use 'vimwiki/vimwiki'
     use 'mbbill/undotree'
-    use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+    use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
     use 'szw/vim-maximizer' -- maximize current buffer, default F3
-    use 'glepnir/dashboard-nvim'
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'
-    use { "dstein64/vim-startuptime", cmd = "StartupTime" }
+    use {"dstein64/vim-startuptime", cmd = "StartupTime"}
+    -- Lua
+    use {"folke/which-key.nvim"}
+    use {'goolord/alpha-nvim', requires = {'kyazdani42/nvim-web-devicons'}}
 end)

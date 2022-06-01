@@ -9,7 +9,7 @@ require'cmp'.setup {
     },
     sources = {
         {name = 'nvim_lsp', max_item_count = 10}, {name = 'vsnip'}, {name = 'nvim_lua', max_item_count = 10}, {name = 'buffer', max_item_count = 10},
-        {name = 'path', max_item_count = 10}, {name = 'emoji'}, {name = 'calc'}
+        {name = 'path', max_item_count = 10}, {name = 'emoji'}, {name = 'calc'}, {name = 'nvim_lsp_document_symbol'}
     },
 
     mapping = {
@@ -18,7 +18,7 @@ require'cmp'.setup {
         ['<CR>'] = cmp.mapping(cmp.mapping.confirm({select = true}), {'i', 's'})
     },
 
-    documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}},
+    window = {documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}}},
 
     formatting = {
         format = function(entry, vim_item)
@@ -34,3 +34,7 @@ require'cmp'.setup {
     preselect = types.cmp.PreselectMode.None,
     experimental = {native_menu = false, ghost_text = false}
 }
+
+require'cmp'.setup.cmdline('/', {
+    sources = cmp.config.sources({{name = 'nvim_lsp_document_symbol', max_item_count = 5}}, {{name = "buffer", max_item_count = 5}})
+})

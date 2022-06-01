@@ -1,5 +1,6 @@
 local my_color_schemes = {}
 my_color_schemes['solarized-dark'] = {
+    vim_mode_bg = '#073642',
     bg = "#073642",
     fg = "#bbc2cf",
     fg_alt = "#5B6268",
@@ -13,6 +14,7 @@ my_color_schemes['solarized-dark'] = {
 }
 
 my_color_schemes['tomorrow-night'] = {
+    vim_mode_bg = "#282a2e",
     bg = "#282a2e",
     fg = "#c5c8c6",
     fg_alt = "#373b41",
@@ -26,6 +28,7 @@ my_color_schemes['tomorrow-night'] = {
 }
 
 my_color_schemes['monokai-pro'] = {
+    vim_mode_bg = "#2D2A2E",
     bg = "#2D2A2E",
     fg = "#FCFCFA",
     fg_alt = "#FCFCFA",
@@ -39,6 +42,7 @@ my_color_schemes['monokai-pro'] = {
 }
 
 my_color_schemes['nord'] = {
+    vim_mode_bg = "#2E3440",
     bg = "#2E3440",
     fg = "#D8DEE9",
     fg_alt = "#E5E9F0",
@@ -53,6 +57,7 @@ my_color_schemes['nord'] = {
 
 my_color_schemes['gruvbuddy'] = {
     -- bg = "#282c34",
+    vim_mode_bg = "#292e37",
     bg = "#292e37",
     fg = "#c5c8c6",
     fg_alt = "#f2e5bc",
@@ -67,6 +72,7 @@ my_color_schemes['gruvbuddy'] = {
 
 my_color_schemes['vscode'] = {
     -- bg = "#007ACC",
+    vim_mode_bg = "#16825d",
     bg = "#0063cc",
     fg = "#D8DEE9",
     fg_alt = "#D8DEE9",
@@ -81,19 +87,21 @@ my_color_schemes['vscode'] = {
 
 my_color_schemes['palenight'] = {
     -- bg = "#007ACC",
-    bg = "#1b1e2b",
-    fg = "#D8DEE9",
-    fg_alt = "#D8DEE9",
-    yellow = "#D8DEE9",
-    cyan = "#D8DEE9",
-    green = "#D8DEE9",
+    vim_mode_bg = "#292d3e",
+    bg = "#292d3e",
+    fg = "#959dcb",
+    fg_alt = "#959dcb",
+    yellow = "#ffcb6b",
+    cyan = "#89ddff",
+    green = "#c3e88d",
     orange = "#D8DEE9",
-    magenta = "#D8DEE9",
-    blue = "#D8DEE9",
-    red = "#D8DEE9"
+    magenta = "#c792ea",
+    blue = "#82aaff",
+    red = "#292d3e"
 }
 
 my_color_schemes['gruvbox'] = {
+    vim_mode_bg = "#282828",
     bg = "#282828",
     fg = "#ebdbb2",
     fg_alt = '#a89984',
@@ -126,7 +134,7 @@ end
 -- main config
 local gl = require('galaxyline')
 -- local colors = require('galaxyline.themes.colors')['nord']
-local colors = my_color_schemes['gruvbox']
+local colors = my_color_schemes['tomorrow-night']
 
 local condition = require('galaxyline.condition')
 local gls = gl.section
@@ -138,8 +146,7 @@ gls.left[1] = {
         provider = function()
             return '  '
         end,
-        highlight = {colors.blue, colors.bg}
-        -- highlight = {colors.blue,"#16825d"}
+        highlight = {colors.blue, colors.vim_mode_bg}
     }
 }
 
@@ -211,8 +218,8 @@ gls.left[2] = {
             vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim_mode])
             return alias[vim_mode] .. " "
         end,
-        -- highlight = {colors.red,"#16825d",'bold'},
-        highlight = {colors.red, colors.bg}
+        -- highlight = {colors.red, "#16825d", 'bold'}
+        highlight = {colors.red, colors.vim_mode_bg}
     }
 }
 

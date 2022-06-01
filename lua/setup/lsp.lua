@@ -4,10 +4,13 @@ local path = util.path
 -- handler setups
 local pop_opts = {border = "rounded", max_width = 80}
 
+-- virtual text is disabled
+vim.diagnostic.config({virtual_text = false})
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, pop_opts)
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                                                                   {underline = true, virtual_text = false, signs = {severity_limit = "Hint"}})
+                                                                   {undercurl = true, virtual_text = false, signs = {severity_limit = "Hint"}})
 
 -- ============================================================================================================
 -- python env sourcing
@@ -77,17 +80,20 @@ function goimports(timeout_ms)
     end
 end
 
-local luadev = require("lua-dev").setup({
-    lspconfig = {
-        cmd = {"/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server"},
-        on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
-        end
-    }
-})
-
-require('lspconfig')['sumneko_lua'].setup(luadev)
+-- lazy loading the lua-dev
+local status_ok, _ = pcall(require, "lua-dev")
+if status_ok then
+    local luadev = require("lua-dev").setup({
+        lspconfig = {
+            cmd = {"/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server"},
+            on_attach = function(client)
+                client.resolved_capabilities.document_formatting = false
+                client.resolved_capabilities.document_range_formatting = false
+            end
+        }
+    })
+    require('lspconfig')['sumneko_lua'].setup(luadev)
+end
 
 -- ============================================================================================================
 -- diagnostic settings

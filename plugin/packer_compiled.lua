@@ -69,11 +69,14 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["alpha-nvim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["barbar.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/opt/barbar.nvim",
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
   ["cmp-buffer"] = {
@@ -116,25 +119,15 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["codesmell_dark.vim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/codesmell_dark.vim",
-    url = "https://github.com/whatsthatsmell/codesmell_dark.vim"
-  },
   ["colorbuddy.vim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
     url = "https://github.com/tjdevries/colorbuddy.vim"
   },
-  ["darkplus.nvim"] = {
+  darcula = {
     loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
-    url = "https://github.com/martinsione/darkplus.nvim"
-  },
-  ["dashboard-nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
-    url = "https://github.com/glepnir/dashboard-nvim"
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/darcula",
+    url = "https://github.com/doums/darcula"
   },
   ["diffview.nvim"] = {
     commands = { "DiffviewOpen", "DiffviewClose" },
@@ -143,11 +136,6 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/smit/.local/share/nvim/site/pack/packer/opt/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
-  },
-  ["doom-one.nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
-    url = "https://github.com/NTBBloodbath/doom-one.nvim"
   },
   ["fidget.nvim"] = {
     loaded = true,
@@ -169,10 +157,10 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/goto-preview",
     url = "https://github.com/rmagatti/goto-preview"
   },
-  ["gruvbox.nvim"] = {
+  ["gruvbox-baby"] = {
     loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/gruvbox-baby",
+    url = "https://github.com/luisiacc/gruvbox-baby"
   },
   ["gruvbuddy.nvim"] = {
     loaded = true,
@@ -189,6 +177,11 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["leaf.nvim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/leaf.nvim",
+    url = "https://github.com/daschw/leaf.nvim"
+  },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
@@ -203,21 +196,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/lua-dev.nvim",
     url = "https://github.com/folke/lua-dev.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
-  },
-  ["material.nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/material.nvim",
-    url = "https://github.com/marko-cerovac/material.nvim"
-  },
-  ["monokai.nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/monokai.nvim",
-    url = "https://github.com/tanvirtin/monokai.nvim"
   },
   nerdcommenter = {
     loaded = true,
@@ -239,6 +217,16 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
+  ["nvcode-color-schemes.vim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim",
+    url = "https://github.com/christianchiarulli/nvcode-color-schemes.vim"
+  },
+  ["nvim-base16"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/nvim-base16",
+    url = "https://github.com/RRethy/nvim-base16"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -250,8 +238,11 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-toggleterm.lua"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua",
+    commands = { "ToggleTerm", "ToggleTermToggleAll" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/opt/nvim-toggleterm.lua",
     url = "https://github.com/akinsho/nvim-toggleterm.lua"
   },
   ["nvim-treesitter"] = {
@@ -269,11 +260,6 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["palenight.vim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/palenight.vim",
-    url = "https://github.com/drewtempelmeyer/palenight.vim"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -284,30 +270,40 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  spacebuddy = {
+  ["project.nvim"] = {
     loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/spacebuddy",
-    url = "https://github.com/Th3Whit3Wolf/spacebuddy"
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
+  },
+  sonokai = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/sonokai",
+    url = "https://github.com/sainnhe/sonokai"
   },
   ["specs.nvim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/specs.nvim",
     url = "https://github.com/edluffy/specs.nvim"
   },
-  ["symbols-outline.nvim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
-    url = "https://github.com/simrat39/symbols-outline.nvim"
-  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
+  ["telescope-media-files.nvim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
+    url = "https://github.com/nvim-telescope/telescope-media-files.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toast.vim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/toast.vim",
+    url = "https://github.com/jsit/toast.vim"
   },
   ["todo-comments.nvim"] = {
     loaded = true,
@@ -323,6 +319,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-colors-xcode"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/vim-colors-xcode",
+    url = "https://github.com/arzg/vim-colors-xcode"
   },
   ["vim-devicons"] = {
     loaded = true,
@@ -370,15 +371,18 @@ _G.packer_plugins = {
     path = "/home/smit/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
   },
-  vimwiki = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/vimwiki",
-    url = "https://github.com/vimwiki/vimwiki"
-  },
   ["vista.vim"] = {
-    loaded = true,
-    path = "/home/smit/.local/share/nvim/site/pack/packer/start/vista.vim",
+    commands = { "Vista" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/opt/vista.vim",
     url = "https://github.com/liuchengxu/vista.vim"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/smit/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
@@ -386,22 +390,18 @@ time([[Defining packer_plugins]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DiffviewOpen lua require("packer.load")({'diffview.nvim'}, { cmd = "DiffviewOpen", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DiffviewClose lua require("packer.load")({'diffview.nvim'}, { cmd = "DiffviewClose", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ToggleTerm lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "ToggleTerm", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ToggleTermToggleAll lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "ToggleTermToggleAll", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DiffviewOpen lua require("packer.load")({'diffview.nvim'}, { cmd = "DiffviewOpen", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Vista lua require("packer.load")({'vista.vim'}, { cmd = "Vista", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Event lazy-loads
-time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'barbar.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-time([[Defining lazy-load event autocommands]], false)
-vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

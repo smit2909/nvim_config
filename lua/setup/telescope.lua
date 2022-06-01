@@ -1,4 +1,8 @@
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then return end
+
 local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
 local make_entry = require "telescope.make_entry"
@@ -6,6 +10,7 @@ local previewers = require('telescope.previewers')
 local sorters = require('telescope.sorters')
 local conf = require("telescope.config").values
 local builtin = require('telescope.builtin')
+local ivy_theme = require('telescope.themes').get_ivy()
 
 require('telescope').setup {
     defaults = {
@@ -16,20 +21,20 @@ require('telescope').setup {
         grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
 
-        mappings = { i = { ["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist } }
+        mappings = {i = {["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist}}
     },
-    extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } }
+    extensions = {fzy_native = {override_generic_sorter = false, override_file_sorter = true}}
 }
 
 function set_background(content)
-    vim.fn.system("gsettings set org.gnome.desktop.background picture-uri file:///" .. content .. "")
+    vim.fn.system("feh --bg-scale " .. content .. "")
 end
 
 require('telescope').load_extension('fzy_native')
 
 local M = {}
 M.search_dotfiles = function()
-    builtin.find_files({ prompt_title = "< VimRC >", cwd = "~/work/nvim/" })
+    builtin.find_files({prompt_title = "< VimRC >", cwd = "~/work/nvim/"})
 end
 
 local function select_background(prompt_bufnr, map)
@@ -65,7 +70,7 @@ local function image_selector(prompt, cwd)
     end
 end
 
-M.anime_selector = image_selector("< Select Wallpaper > ", "~/Downloads/wallpapers")
+M.anime_selector = image_selector("< Select Wallpaper > ", "~/Pictures/Wallpapers")
 
 M.git_branches = function()
     require("telescope.builtin").git_branches({
@@ -79,8 +84,9 @@ end
 
 M.my_picker = function(opts)
     -- this is the exact picker from source code of telescope nvim, with a few modification to server_results
+    for k, v in pairs(ivy_theme) do opts[k] = v end
     local params = vim.lsp.util.make_position_params()
-    params.context = { includeDeclaration = true }
+    params.context = {includeDeclaration = true}
 
     local results_lsp, err = vim.lsp.buf_request_sync(0, "textDocument/references", params, 10000)
     if err then
@@ -118,7 +124,7 @@ M.my_picker = function(opts)
 
     pickers.new(opts, {
         prompt_title = "Filtered LSP References",
-        finder = finders.new_table { results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts) },
+        finder = finders.new_table {results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts)},
         previewer = conf.qflist_previewer(opts),
         sorter = conf.generic_sorter(opts)
     }):find()
@@ -143,7 +149,7 @@ local function HunkToLocation(hunk)
 end
 
 local function ChangedHunks()
-    local op = require 'gitsigns'.get_hunks()
+    local op = require'gitsigns'.get_hunks()
     local filepath = vim.fn.expand('%')
     local output = {}
 
@@ -158,6 +164,7 @@ local function ChangedHunks()
 end
 
 M.hunk_picker = function(opts)
+    for k, v in pairs(ivy_theme) do opts[k] = v end
 
     local locations = ChangedHunks()
 
@@ -166,7 +173,7 @@ M.hunk_picker = function(opts)
 
     pickers.new(opts, {
         prompt_title = "Changed Hunks",
-        finder = finders.new_table { results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts) },
+        finder = finders.new_table {results = locations, entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts)},
         previewer = conf.qflist_previewer(opts),
         sorter = conf.generic_sorter(opts)
     }):find()
@@ -175,11 +182,11 @@ end
 M.changed_on_branch = function()
     pickers.new {
         results_title = 'Modified on current branch',
-        finder = finders.new_oneshot_job({ 'bash', '/home/smit/personal/myscripts/git_branch_modified.sh', 'list' }),
+        finder = finders.new_oneshot_job({'bash', '/home/smit/personal/myscripts/git_branch_modified.sh', 'list'}),
         sorter = sorters.get_fuzzy_file(),
         previewer = previewers.new_termopen_previewer {
             get_command = function(entry)
-                return { 'bash', '/home/smit/personal/myscripts/git_branch_modified.sh', 'diff', entry.value }
+                return {'bash', '/home/smit/personal/myscripts/git_branch_modified.sh', 'diff', entry.value}
             end
         }
     }:find()
@@ -190,11 +197,11 @@ local delta_previewer = previewers.new_termopen_previewer {
         -- this is for status
         -- You can get the AM things in entry.status. So we are displaying file if entry.status == '??' or 'A '
         -- just do an if and return a different command
-        if entry.status == '??' or 'A ' then return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value } end
+        if entry.status == '??' or 'A ' then return {'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value} end
 
         -- note we can't use pipes
         -- this command is for git_commits and git_bcommits
-        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
+        return {'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!'}
 
     end
 }
@@ -211,11 +218,44 @@ M.search_in_curr_file_dir = function()
     filepath = vim.fn.expand('%')
     folder, filename, extension = filepath:match("^(.-)([^\\/]-)%.([^\\/%.]-)%.?$")
     if folder == nil or folder == "" then
-        require('telescope.builtin').grep_string { search = vim.fn.input("Grep for > ") }
+        require('telescope.builtin').grep_string {search = vim.fn.input("Grep for > ")}
     else
         preview_string = "Grep in " .. folder .. " for > "
-        require('telescope.builtin').grep_string { search_dirs = { folder }, search = vim.fn.input(preview_string) }
+        require('telescope.builtin').grep_string {search_dirs = {folder}, search = vim.fn.input(preview_string)}
     end
+end
+
+function next_color(prompt_bufnr)
+    actions.move_selection_next(prompt_bufnr)
+    local selected = action_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+end
+
+function prev_color(prompt_bufnr)
+    actions.move_selection_previous(prompt_bufnr)
+    local selected = action_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+end
+
+function enter(prompt_bufnr)
+    local selected = action_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+    actions.close(prompt_bufnr)
+end
+
+M.colorscheme_picker = function()
+    local opts = {
+        attach_mappings = function(_, map)
+            map('n', '<CR>', enter)
+            map('n', 'j', next_color)
+            map('n', 'k', prev_color)
+            return true
+        end
+    }
+    require("telescope.builtin").colorscheme(opts)
 end
 
 return M
