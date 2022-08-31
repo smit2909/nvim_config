@@ -29,25 +29,22 @@ fun! ColorMyPencils()
     "gruvbox baby config
     let g:gruvbox_baby_function_style = "NONE"
     let g:gruvbox_baby_keyword_style = "italic"
-    "let g:gruvbox_baby_transparent_mode = 1
+    let g:gruvbox_baby_transparent_mode = 1
     let g:gruvbox_baby_telescope_theme = 1
 
     "" Load the colorscheme
     "lua require('colorbuddy').colorscheme('gruvbuddy')
     "colorscheme gruvbox-baby
 
-    let g:tokyonight_style = "storm"
+    let g:tokyonight_style = "night"
     let g:tokyonight_italic_functions = 1
     let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-    "let g:tokyonight_transparent = 1
+    let g:tokyonight_transparent = 1
     "let g:tokyonight_colors = {
       "\ 'hint': 'orange',
       "\ 'error': '#ff0000'
     "\ }
     colorscheme tokyonight
-
-    "let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
-    "colorscheme catppuccin
 
     set termguicolors
     let g:doom_one_cursor_coloring=v:false

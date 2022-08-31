@@ -28,16 +28,18 @@ return require('packer').startup(function(use)
     use {'christianchiarulli/nvcode-color-schemes.vim'}
     use {'jsit/toast.vim'}
     -- use {'RRethy/nvim-base16'}
-    -- use {'luisiacc/gruvbox-baby'}
     -- use {'sainnhe/sonokai'}
-    -- use {'arzg/vim-colors-xcode'}
+    use {'luisiacc/gruvbox-baby'}
+    use {'arzg/vim-colors-xcode'}
     use 'folke/tokyonight.nvim'
     use 'navarasu/onedark.nvim'
-    use { "catppuccin/nvim", as = "catppuccin" }
     -- statusline, indentline, barbar
-    use 'NTBBloodbath/galaxyline.nvim'
+    --use 'NTBBloodbath/galaxyline.nvim'
+    use 'nvim-lualine/lualine.nvim'
     use {'romgrk/barbar.nvim'}
     use 'lukas-reineke/indent-blankline.nvim'
+
+    use {'stevearc/dressing.nvim'} --no setup required
 
     -- lsp stuff
     use 'neovim/nvim-lspconfig'
