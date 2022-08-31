@@ -134,7 +134,7 @@ end
 -- main config
 local gl = require('galaxyline')
 -- local colors = require('galaxyline.themes.colors')['nord']
-local colors = my_color_schemes['tomorrow-night']
+local colors = my_color_schemes['gruvbuddy']
 
 local condition = require('galaxyline.condition')
 local gls = gl.section

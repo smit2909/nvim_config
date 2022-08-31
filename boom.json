@@ -1,0 +1,108 @@
+{ '{
+        "Time": "2022-08-28T18:23:51.6719894+05:30",
+        "Action": "output",
+        "Package": "todo/cmd",
+        "Output": "?   \\ttodo/cmd\\t[no test files]\\n"
+    }', '{
+        "Time": "2022-08-28T18:23:51.6720969+05:30",
+        "Action": "skip",
+        "Package": "todo/cmd",
+        "Elapsed": 0
+    }', '{
+        "Time":"2022-08-28T18:23:51.6721341+05: 30","Action":"output","Package":"todo/internal/common/pointer","Output":"?   \\ttodo/internal/common/pointer\\t[no test files
+        ]\\n"}', '{"Time":"2022-08-28T18: 23: 51.6721624+05: 30","Action":"skip","Package":"todo/internal/common/pointer","Elapsed":0}', '{
+            "Time": "2022-08-28T18:23:51.6721956+05:30",
+            "Action": "output",
+            "Package": "todo/internal/db",
+            "Output": "?   \\ttodo/internal/db\\t[no test files]\\n"
+        }', '{
+            "Time": "2022-08-28T18:23:51.6722138+05:30",
+            "Action": "skip",
+            "Package": "todo/internal/db",
+            "Elapsed": 0
+        }', '{"T
+ime":"2022-08-28T18: 23: 51.684729+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"The files belonging to this database system will be owned by user \\"smit\\".\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847693+05: 30","Action":"output","Package
+":"todo/internal/db/postgres","Output":"This user must also own the server process.\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847733+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847759+05: 30","Action
+":"output","Package":"todo/internal/db/postgres","Output":"The database cluster will be initialized with locale \\"C.UTF-8\\".\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847786+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"The default datab
+ase encoding has accordingly been set to \\"UTF8\\".\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847809+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"The default text search configuration will be set to \\"english\\".\\n"}', '{"Time":"2022-0
+8-28T18: 23: 51.6847835+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847858+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"Data page checksums are disabled.\\n"}', '{"Time
+":"2022-08-28T18: 23: 51.6847884+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847906+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"creating directory /home/smit/.embedded
+-postgres-go/extracted/data ... ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847929+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"creating subdirectories ... ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847958+05: 30","Action":"output","Package
+":"todo/internal/db/postgres","Output":"selecting dynamic shared memory implementation ... posix\\n"}', '{"Time":"2022-08-28T18: 23: 51.6847981+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"selecting default max_connections ... 100\\n"}', '{
+                "Time": "2022-08-28T18:23:51.6848004+05:30",
+                "Action": "output",
+                "Package": "todo/internal/db/postgres",
+                "Output": "selecting default shared_buffers ... 128MB\\n"
+            }', '{
+                "Time": "2022-08-28T18:23:51.6848026+05:30",
+                "Action": "output",
+                "Package":"todo/internal/db/postgres","Output":"selecting default time zone ... Asia/Calcutta\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848047+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"creating configuration files ... ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848071+05: 30
+","Action":"output","Package":"todo/internal/db/postgres","Output":"running bootstrap script ... ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848094+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"performing post-bootstrap initialization ...
+ ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848115+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"syncing data to disk ... ok\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848136+05: 30","Action":"output","Package":"todo/internal/db/postgres","Out
+put":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848157+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"Success. You can now start the database server using:\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848178+05: 30","Action":"output","Package":"to
+do/internal/db/postgres","Output":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848199+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"    /home/smit/.embedded-postgres-go/extracted/bin/pg_ctl -D /home/smit/.embedded-postgres-go/extracted/data
+ -l logfile start\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848229+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"\\n"}', '{"Time":"2022-08-28T18: 23: 51.684825+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"waiting
+for server to start....2022-08-28 18: 12: 52.800 IST [
+                    10706
+                ] LOG:  starting PostgreSQL 12.11 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 4.8.4-2ubuntu1~14.04.4) 4.8.4,
+                64-bit\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848286+05: 30","Action":"output","Package":"todo
+/internal/db/postgres","Output":"2022-08-28 18: 12: 52.800 IST [
+                    10706
+                ] LOG:  listening on IPv4 address \\"127.0.0.1\\", port 5433\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848317+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12
+: 52.806 IST [
+                    10706
+                ] LOG:  listening on Unix socket \\"/tmp/.s.PGSQL.5433\\"\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848341+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.818 IST [
+                    10707
+                ] LOG:  database system was shut d
+own at 2022-08-28 18: 12: 52 IST\\n"}', '{"Time":"2022-08-28T18: 23: 51.684837+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.821 IST [
+                    10706
+                ] LOG:  database system is ready to accept connections\\n"}', '{"Time":"2022-08-
+28T18: 23: 51.6848393+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":" done\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848415+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"server started\\n"}', '{"Time":"2022-08-28T18
+: 23: 51.6848437+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022/08/28 18: 12: 52 \\u003c--------------- starting db ------------------------\\u003e\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848461+05: 30","Action":"output","Package":"todo/i
+nternal/db/postgres","Output":"2022/08/28 18: 12: 52 OK    0001_list.sql\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848482+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022/08/28 18: 12: 52 OK    0002_task.sql\\n"}', '{"Time":"2022-08-28T18: 23
+: 51.6848504+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022/08/28 18: 12: 52 goose: no migrations to run. current version: 2\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848533+05: 30","Action":"run","Package":"todo/internal/db/postgres","Tes
+t":"TestGetLists"}', '{"Time":"2022-08-28T18: 23: 51.684856+05: 30","Action":"output","Package":"todo/internal/db/postgres","Test":"TestGetLists","Output":"=== RUN   TestGetLists\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848601+05: 30","Action":"output","Package":"todo/
+internal/db/postgres","Test":"TestGetLists","Output":"--- PASS: TestGetLists (0.01s)\\n"}', '{"Time":"2022-08-28T18: 23: 51.684863+05: 30","Action":"pass","Package":"todo/internal/db/postgres","Test":"TestGetLists","Elapsed":0.01}', '{"Time":"2022-08-28T18: 23: 51.68
+48671+05: 30","Action":"run","Package":"todo/internal/db/postgres","Test":"TestAddList"}', '{"Time":"2022-08-28T18: 23: 51.6848693+05: 30","Action":"output","Package":"todo/internal/db/postgres","Test":"TestAddList","Output":"=== RUN   TestAddList\\n"}', '{"Time":"2
+022-08-28T18: 23: 51.6848719+05: 30","Action":"output","Package":"todo/internal/db/postgres","Test":"TestAddList","Output":"--- PASS: TestAddList (0.01s)\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848741+05: 30","Action":"pass","Package":"todo/internal/db/postgres","Test
+":"TestAddList","Elapsed":0.01}', '{"Time":"2022-08-28T18: 23: 51.6848763+05: 30","Action":"run","Package":"todo/internal/db/postgres","Test":"TestAddTask"}', '{"Time":"2022-08-28T18: 23: 51.6848786+05: 30","Action":"output","Package":"todo/internal/db/postgres","Test
+":"TestAddTask","Output":"=== RUN   TestAddTask\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848811+05: 30","Action":"output","Package":"todo/internal/db/postgres","Test":"TestAddTask","Output":"--- PASS: TestAddTask (0.01s)\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848832+
+05: 30","Action":"pass","Package":"todo/internal/db/postgres","Test":"TestAddTask","Elapsed":0.01}', '{"Time":"2022-08-28T18: 23: 51.6848853+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"PASS\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848875+0
+5: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022/08/28 18: 12: 52 \\u003c--------------- stopping db ------------------------\\u003e\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848899+05: 30","Action":"output","Package":"todo/internal/db/postg
+res","Output":"2022-08-28 18: 12: 52.897 IST [
+                    10715
+                ] ERROR:  relation \\"goose_db_version\\" does not exist at character 36\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848922+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.89
+7 IST [
+                    10715
+                ] STATEMENT:  SELECT version_id, is_applied from goose_db_version ORDER BY id DESC\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848944+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.950 IST [
+                    10706
+                ] LOG:  receive
+d fast shutdown request\\n"}', '{"Time":"2022-08-28T18: 23: 51.6848966+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"waiting for server to shut down....2022-08-28 18: 12: 52.953 IST [
+                    10706
+                ] LOG:  aborting any active transactions\\n"}', '{"
+Time":"2022-08-28T18: 23: 51.6848989+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.954 IST [
+                    10715
+                ] FATAL:  terminating connection due to administrator command\\n"}', '{"Time":"2022-08-28T18: 23: 51.6849012+05: 30","Actio
+n":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.954 IST [
+                    10706
+                ] LOG:  background worker \\"logical replication launcher\\" (PID 10713) exited with exit code 1\\n"}', '{"Time":"2022-08-28T18: 23: 51.6849036+05: 30","Action":"output","
+Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.955 IST [
+                    10708
+                ] LOG:  shutting down\\n"}', '{"Time":"2022-08-28T18: 23: 51.6849057+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":"2022-08-28 18: 12: 52.991 IST [
+                    10706
+                ] LOG:
+ database system is shut down\\n"}', '{"Time":"2022-08-28T18: 23: 51.6849079+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output":" done\\n"}', '{"Time":"2022-08-28T18: 23: 51.6849102+05: 30","Action":"output","Package":"todo/internal/db/postgres","Output": "server stopped\\n"
+            }', '{
+                "Time": "2022-08-28T18:23:51.6849124+05:30",
+                "Action": "output",
+                "Package": "todo/internal/db/postgres",
+                "Output": "ok  \\ttodo/internal/db/postgres\\t(cached)\\n"
+            }', '{
+                "Time": "2022-08-28T18:23:51.6849157+05:30",
+                "Action": "pass","Packag
+e":"todo/internal/db/postgres","Elapsed":0}', '{"Time":"2022-08-28T18: 23: 51.6850277+05: 30","Action":"output","Package":"todo/services","Output":"?   \\ttodo/services\\t[no test files
+                ]\\n"}', '{"Time":"2022-08-28T18: 23: 51.6850456+05: 30","Action":"skip","Package":"todo/services",
+                "Elapsed": 0
+            }',
+            ""
+        }

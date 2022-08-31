@@ -24,25 +24,30 @@ fun! ColorMyPencils()
     let g:gruvbox_contrast_dark='hard'
     let g:gruvbox_invert_selection=0
 
-
-    "lua require('colorbuddy').colorscheme('gruvbuddy')
-    "colorscheme gruvbox
-    lua require("leaf").setup({ theme = "darker", })
     let g:nvcode_termcolors=256
-    "colorscheme base16-gruvbox-dark-hard
 
     "gruvbox baby config
     let g:gruvbox_baby_function_style = "NONE"
     let g:gruvbox_baby_keyword_style = "italic"
-
-    "" Enable telescope theme
+    "let g:gruvbox_baby_transparent_mode = 1
     let g:gruvbox_baby_telescope_theme = 1
 
-    "" Enable transparent mode
-    "let g:gruvbox_baby_transparent_mode = 1
-
     "" Load the colorscheme
-    colorscheme base16-gruvbox-dark-hard
+    "lua require('colorbuddy').colorscheme('gruvbuddy')
+    "colorscheme gruvbox-baby
+
+    let g:tokyonight_style = "storm"
+    let g:tokyonight_italic_functions = 1
+    let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+    "let g:tokyonight_transparent = 1
+    "let g:tokyonight_colors = {
+      "\ 'hint': 'orange',
+      "\ 'error': '#ff0000'
+    "\ }
+    colorscheme tokyonight
+
+    "let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
+    "colorscheme catppuccin
 
     set termguicolors
     let g:doom_one_cursor_coloring=v:false
@@ -97,7 +102,3 @@ nnoremap <C-b> :call BGToggleTransparency()<CR>
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-hi DiagnosticUnderlineError guisp=#fb4934 gui=undercurl "red
-hi DiagnosticUnderlineWarn guisp=#fe8019 gui=undercurl "orange
-hi DiagnosticUnderlineInfo guisp=#fabd2f gui=undercurl "yellow
-hi DiagnosticUnderlineHint guisp=#ffffff gui=undercurl "green

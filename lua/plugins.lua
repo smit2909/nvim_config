@@ -27,12 +27,13 @@ return require('packer').startup(function(use)
     use {'tjdevries/gruvbuddy.nvim', requires = {'tjdevries/colorbuddy.vim'}}
     use {'christianchiarulli/nvcode-color-schemes.vim'}
     use {'jsit/toast.vim'}
-    use {'RRethy/nvim-base16'}
-    use {'luisiacc/gruvbox-baby'}
-    use {'daschw/leaf.nvim'}
-    use {'sainnhe/sonokai'}
-    use {'arzg/vim-colors-xcode'}
-    use {'doums/darcula'}
+    -- use {'RRethy/nvim-base16'}
+    -- use {'luisiacc/gruvbox-baby'}
+    -- use {'sainnhe/sonokai'}
+    -- use {'arzg/vim-colors-xcode'}
+    use 'folke/tokyonight.nvim'
+    use 'navarasu/onedark.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
     -- statusline, indentline, barbar
     use 'NTBBloodbath/galaxyline.nvim'
     use {'romgrk/barbar.nvim'}
@@ -44,7 +45,7 @@ return require('packer').startup(function(use)
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'rmagatti/goto-preview'
-    use 'j-hui/fidget.nvim'
+    -- use 'j-hui/fidget.nvim'
     use 'onsails/lspkind-nvim'
     use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
@@ -68,8 +69,9 @@ return require('packer').startup(function(use)
     use {'sindrets/diffview.nvim', opt = true, cmd = {"DiffviewOpen", "DiffviewClose"}}
 
     -- terminal toggle
-    use {'akinsho/nvim-toggleterm.lua', opt = true, cmd = {"ToggleTerm", "ToggleTermToggleAll"}}
-
+    use {"akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+            require("toggleterm").setup()
+        end}
     -- treesitter and its plugins
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -86,6 +88,7 @@ return require('packer').startup(function(use)
     -- miscellaoeous vim utils
     use 'milkypostman/vim-togglelist'
     use {'liuchengxu/vista.vim', opt = true, cmd = {"Vista"}}
+    use 'simrat39/symbols-outline.nvim'
     use 'preservim/nerdcommenter'
     use 'edluffy/specs.nvim'
     use 'folke/todo-comments.nvim'

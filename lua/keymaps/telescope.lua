@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap("n", "<C-r>", ":lua require('telescope.builtin').live_gr
 vim.api.nvim_set_keymap("n", "<A-b>", ":lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_ivy({}))<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<A-s>",
-                        ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols(require('telescope.themes').get_ivy({ignore_symbols={'variable', 'method'}}))<CR>",
+                        ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols(require('telescope.themes').get_ivy({ignore_symbols={'variable', 'field'}}))<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>s", ":lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy({bufnr=0}))<CR>",
                         {noremap = true, silent = true})

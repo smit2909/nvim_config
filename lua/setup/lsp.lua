@@ -2,15 +2,15 @@ local util = require('lspconfig/util')
 local path = util.path
 -- ============================================================================================================
 -- handler setups
-local pop_opts = {border = "rounded", max_width = 80}
+local pop_opts = { border = "rounded", max_width = 80 }
 
 -- virtual text is disabled
-vim.diagnostic.config({virtual_text = false})
+vim.diagnostic.config({ virtual_text = false })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, pop_opts)
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                                                                   {undercurl = true, virtual_text = false, signs = {severity_limit = "Hint"}})
+    { undercurl = true, virtual_text = true, signs = { severity_limit = "Hint" } })
 
 -- ============================================================================================================
 -- python env sourcing
@@ -38,69 +38,74 @@ require('lspconfig')['pyright'].setup {
     end
 }
 
-require('lspconfig')['gopls'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
-require('lspconfig')['vimls'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
+require('lspconfig')['gopls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    root_dir = util.root_pattern("go.mod") }
+require('lspconfig')['vimls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['bashls'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
+require('lspconfig')['bashls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['yamlls'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
+require('lspconfig')['yamlls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['html'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
+require('lspconfig')['html'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['cssls'].setup {capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())}
+require('lspconfig')['cssls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
 require('lspconfig')['gopls'].setup {
-    settings = {gopls = {analyses = {unusedparams = true}, staticcheck = true}}
+    settings = { gopls = { analyses = { unusedparams = true }, staticcheck = true } }
     -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git", ".gitignore", "README.md"),
 }
 
-function goimports(timeout_ms)
-    local context = {only = {"source.organizeImports"}}
-    vim.validate {context = {context, "t", true}}
-
+function goimports(wait_ms)
     local params = vim.lsp.util.make_range_params()
-    params.context = context
-
-    -- See the implementation of the textDocument/codeAction callback
-    -- (lua/vim/lsp/handler.lua) for how to do this properly.
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
-
-    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-    -- is a CodeAction, it can have either an edit, a command or both. Edits
-    -- should be executed first.
-    if action.edit or type(action.command) == "table" then
-        if action.edit then vim.lsp.util.apply_workspace_edit(action.edit) end
-        if type(action.command) == "table" then vim.lsp.buf.execute_command(action.command) end
-    else
-        vim.lsp.buf.execute_command(action)
+    params.context = { only = { "source.organizeImports" } }
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+    for cid, res in pairs(result or {}) do
+        for _, r in pairs(res.result or {}) do
+            if r.edit then
+                local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                vim.lsp.util.apply_workspace_edit(r.edit, enc)
+            end
+        end
     end
 end
 
 -- lazy loading the lua-dev
-local status_ok, _ = pcall(require, "lua-dev")
-if status_ok then
-    local luadev = require("lua-dev").setup({
-        lspconfig = {
-            cmd = {"/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server"},
-            on_attach = function(client)
-                client.resolved_capabilities.document_formatting = false
-                client.resolved_capabilities.document_range_formatting = false
-            end
-        }
-    })
-    require('lspconfig')['sumneko_lua'].setup(luadev)
-end
+--local status_ok, _ = pcall(require, "lua-dev")
+--if status_ok then
+--local luadev = require("lua-dev").setup({
+--lspconfig = {
+--cmd = { "/home/smit/lua_lsp_source/lua-language-server/bin/lua-language-server" },
+--on_attach = function(client)
+--client.resolved_capabilities.document_formatting = false
+--client.resolved_capabilities.document_range_formatting = false
+--end
+--}
+--})
+--require('lspconfig')['sumneko_lua'].setup(luadev)
+--end
 
 -- ============================================================================================================
 -- diagnostic settings
-vim.diagnostic.config({float = {source = 'always', border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}}})
+vim.diagnostic.config({ float = { source = 'always', border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } } })
 
-local signs = {Error = " ", Warn = " ", Hint = " ", Info = " "}
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+-- Toogle diagnostics
+local M = {}
+local diagnostics_active = true
+local toggle_diagnostics = function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
+        vim.diagnostic.enable()
+    else
+        vim.api.nvim_echo({ { "Disable diagnostics" } }, false, {})
+        vim.diagnostic.disable()
+    end
+end
+M.toggle_diagnostics = toggle_diagnostics
+return M
