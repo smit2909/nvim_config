@@ -54,24 +54,22 @@ require('lspconfig')['gopls'].setup {
     settings = { gopls = { analyses = { unusedparams = true }, staticcheck = true } }
     -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git", ".gitignore", "README.md"),
 }
-require('lspconfig')['rust_analyzer'].setup{
-    on_attach=on_attach,
+require('lspconfig')['rust_analyzer'].setup {
+    on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
-            --imports = {
-                --granularity = {
-                    --group = "module",
-                --},
-                --prefix = "self",
-            --},
-        assist = {
-          importEnforceGranularity = true,
-          importPrefix = "crate"
-          },
-        cargo = {
-          allFeatures = true
-          },
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            assist = {
+                importEnforceGranularity = true,
+                importPrefix = "crate"
+            },
             cargo = {
+                allFeatures = true,
                 buildScripts = {
                     enable = true,
                 },
