@@ -5,7 +5,7 @@ local path = util.path
 local pop_opts = { border = "rounded", max_width = 80 }
 
 -- virtual text is disabled
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = false, severity_sort = true })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, pop_opts)
@@ -53,6 +53,34 @@ require('lspconfig')['cssls'].setup { capabilities = require('cmp_nvim_lsp').upd
 require('lspconfig')['gopls'].setup {
     settings = { gopls = { analyses = { unusedparams = true }, staticcheck = true } }
     -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git", ".gitignore", "README.md"),
+}
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach=on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            --imports = {
+                --granularity = {
+                    --group = "module",
+                --},
+                --prefix = "self",
+            --},
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate"
+          },
+        cargo = {
+          allFeatures = true
+          },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
 }
 
 function goimports(wait_ms)

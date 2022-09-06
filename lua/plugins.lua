@@ -27,8 +27,8 @@ return require('packer').startup(function(use)
     use {'tjdevries/gruvbuddy.nvim', requires = {'tjdevries/colorbuddy.vim'}}
     use {'christianchiarulli/nvcode-color-schemes.vim'}
     use {'jsit/toast.vim'}
-    -- use {'RRethy/nvim-base16'}
-    -- use {'sainnhe/sonokai'}
+    use {'RRethy/nvim-base16'}
+    use {'sainnhe/sonokai'}
     use {'luisiacc/gruvbox-baby'}
     use {'arzg/vim-colors-xcode'}
     use 'folke/tokyonight.nvim'
@@ -61,9 +61,9 @@ return require('packer').startup(function(use)
     }
 
     -- nerdtree stuff
-    use 'preservim/nerdtree'
-    use 'jistr/vim-nerdtree-tabs'
-    use 'Xuyuanp/nerdtree-git-plugin'
+    --use 'preservim/nerdtree'
+    --use 'jistr/vim-nerdtree-tabs'
+    --use 'Xuyuanp/nerdtree-git-plugin'
 
     -- git stuff
     use 'tpope/vim-fugitive'
@@ -77,6 +77,7 @@ return require('packer').startup(function(use)
     -- treesitter and its plugins
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- telescope and its extensions
     use {
@@ -103,4 +104,7 @@ return require('packer').startup(function(use)
     -- Lua
     use {"folke/which-key.nvim"}
     use {'goolord/alpha-nvim', requires = {'kyazdani42/nvim-web-devicons'}}
+
+    -- Rust
+    use {'simrat39/rust-tools.nvim'}
 end)

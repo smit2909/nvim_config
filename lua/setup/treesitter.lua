@@ -1,5 +1,5 @@
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = { "toml", "yaml", "json", "bash", "regex", "html", "css", "python", "go", "lua" },
+  ensure_installed = { "toml", "yaml", "json", "bash", "regex", "html", "css", "python", "go", "lua", "rust" },
   highlight = {
     enable = true,
   },
@@ -20,6 +20,6 @@ require 'nvim-treesitter.configs'.setup {
     ["[]"] = "@class.outer",
   },
   folding = {
-      enable = true,
+    enable = true,
   }
 }

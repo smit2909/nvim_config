@@ -21,6 +21,7 @@ vim.api.nvim_set_keymap("n", "<leader>[", ":BufferPrevious<CR>", {noremap = true
 vim.api.nvim_set_keymap("n", "<leader>]", ":BufferNext<CR>", {noremap = true})
 -- nmap <leader>x :BufferClose<CR>
 vim.api.nvim_set_keymap("n", "<leader>x", ":BufferClose<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<f4>", ":BufferClose<CR>", {noremap = true})
 
 -- ============================================================================
 -- Word movements
@@ -85,6 +86,12 @@ vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {noremap = true})
 vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {noremap = true})
 -- inoremap ? ?<c-g>u
 vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {noremap = true})
+
+-- jump points and navigation
+vim.api.nvim_set_keymap("n", "<c-d>", "<c-d>zz", {noremap = true})
+vim.api.nvim_set_keymap("n", "<c-u>", "<c-u>zz", {noremap = true})
+-- moving between jumpoints > ctrl+o and ctrl+1
+-- change a paragragh,,like ciw/diw use cip/dip
 
 -- moving text around
 -- vnoremap J :m '>+1<CR>gv=gv

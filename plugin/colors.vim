@@ -18,20 +18,6 @@ endfunction
 fun! ColorMyPencils()
 
     set background=dark
-    " color scheme settings
-    let g:gruvbox_italics = 0
-    let g:gruvbox_bold = 0
-    let g:gruvbox_contrast_dark='hard'
-    let g:gruvbox_invert_selection=0
-
-    let g:nvcode_termcolors=256
-
-    "gruvbox baby config
-    let g:gruvbox_baby_function_style = "NONE"
-    let g:gruvbox_baby_keyword_style = "italic"
-    let g:gruvbox_baby_transparent_mode = 1
-    let g:gruvbox_baby_telescope_theme = 1
-
     "" Load the colorscheme
     "lua require('colorbuddy').colorscheme('gruvbuddy')
     "colorscheme gruvbox-baby
@@ -47,7 +33,6 @@ fun! ColorMyPencils()
     colorscheme tokyonight
 
     set termguicolors
-    let g:doom_one_cursor_coloring=v:false
 
     if exists('+termguicolors')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -79,9 +64,6 @@ fun! ColorMyPencils()
     highlight clear SignColumn
 
     "highlight netrwDir guifg=#5eacd3
-
-    " configure lightline
-    "call ConfigureLightline()
 
     " for default colorscheme
     "if g:colors_name == 'default'

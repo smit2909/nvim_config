@@ -3,6 +3,8 @@ vim.api.nvim_set_keymap("n", "vsh", ":lua vim.lsp.buf.signature_help()<CR>", { n
 -- nnoremap <silent> gr    <cmd>lua require'telescope.builtin'.lsp_references()<CR>
 vim.api.nvim_set_keymap("n", "gr", ":lua require'telescope.builtin'.lsp_references()<CR>",
     { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gi", ":lua require'telescope.builtin'.lsp_implementations()<CR>",
+    { noremap = true, silent = true })
 -- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 vim.api.nvim_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 -- nnoremap <silent>vrn    <cmd>lua vim.lsp.buf.rename()<CR>
