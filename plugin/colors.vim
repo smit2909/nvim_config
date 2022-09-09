@@ -22,15 +22,20 @@ fun! ColorMyPencils()
     "lua require('colorbuddy').colorscheme('gruvbuddy')
     "colorscheme gruvbox-baby
 
-    let g:tokyonight_style = "night"
-    let g:tokyonight_italic_functions = 1
-    let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-    let g:tokyonight_transparent = 1
-    "let g:tokyonight_colors = {
-      "\ 'hint': 'orange',
-      "\ 'error': '#ff0000'
-    "\ }
-    colorscheme tokyonight
+    "let g:tokyonight_style = "night"
+    "let g:tokyonight_italic_functions = 1
+    "let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+    "let g:tokyonight_transparent = 1
+    "colorscheme tokyonight
+    let g:onedark_config = {
+      \ 'style': 'darker',
+      \ 'ending_tildes': v:true,
+      \ 'diagnostics': {
+        \ 'darker': v:false,
+        \ 'background': v:true,
+      \ },
+    \ }
+    colorscheme onedark
 
     set termguicolors
 

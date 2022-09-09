@@ -33,6 +33,7 @@ vim.api.nvim_set_keymap("n", "<leader>pw", ":lua require('telescope.builtin').gr
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<F2>", ":lua require('telescope.builtin').help_tags()<CR>", {noremap = true, silent = true})
 
+vim.api.nvim_set_keymap("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<CR>", {noremap = true, silent = true})
 -- custom pickers
 vim.api.nvim_set_keymap("n", "<leader>vrc", ":lua require('setup.telescope').search_dotfiles()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>va", ":lua require('setup.telescope').anime_selector()<CR>", {noremap = true, silent = true})

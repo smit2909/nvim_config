@@ -25,12 +25,12 @@ return require('packer').startup(function(use)
     require('impatient')
     -- color scheme and related stuff
     use {'tjdevries/gruvbuddy.nvim', requires = {'tjdevries/colorbuddy.vim'}}
-    use {'christianchiarulli/nvcode-color-schemes.vim'}
-    use {'jsit/toast.vim'}
-    use {'RRethy/nvim-base16'}
-    use {'sainnhe/sonokai'}
-    use {'luisiacc/gruvbox-baby'}
-    use {'arzg/vim-colors-xcode'}
+    --use {'christianchiarulli/nvcode-color-schemes.vim'}
+    --use {'jsit/toast.vim'}
+    --use {'RRethy/nvim-base16'}
+    --use {'sainnhe/sonokai'}
+    --use {'luisiacc/gruvbox-baby'}
+    --use {'arzg/vim-colors-xcode'}
     use 'folke/tokyonight.nvim'
     use 'navarasu/onedark.nvim'
     -- statusline, indentline, barbar
