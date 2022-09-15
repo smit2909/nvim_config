@@ -113,7 +113,7 @@ vim.cmd [[vnoremap <leader>rs :g/^\s*$/d<CR>]]
 -- nmap <leader>u :UndotreeToggle<CR>
 vim.api.nvim_set_keymap("n", "<leader>u", ":UndotreeToggle<CR>", {noremap = true})
 -- nnoremap <leader>rc :e ~/.config/nvim/init.lua<CR>
-vim.api.nvim_set_keymap("n", "<leader>rc", ":e ~/.config/nvim/init.lua<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>rc", ":e ~/.config/nvim/lua/plugins.lua<CR>", {noremap = true})
 -- nnoremap <Leader><CR> :so %<CR>
 vim.api.nvim_set_keymap("n", "<Leader><CR>", ":so %<CR>", {noremap = true})
 -- nnoremap <leader>vwm :call ColorMyPencils()<CR>

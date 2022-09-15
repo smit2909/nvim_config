@@ -107,4 +107,6 @@ return require('packer').startup(function(use)
 
     -- Rust
     use {'simrat39/rust-tools.nvim'}
+
+    use 'ThePrimeagen/vim-be-good'
 end)

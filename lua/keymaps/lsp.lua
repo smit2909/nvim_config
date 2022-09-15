@@ -9,7 +9,7 @@ vim.api.nvim_set_keymap("n", "gi", ":lua require'telescope.builtin'.lsp_implemen
 vim.api.nvim_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 -- nnoremap <silent>vrn    <cmd>lua vim.lsp.buf.rename()<CR>
 vim.api.nvim_set_keymap("n", "vrn", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<f2>", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<f2>", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 -- nnoremap <leader>cd   <cmd>lua vim.diagnostic.open_float({})<CR>
 vim.api.nvim_set_keymap("n", "<Leader>cd", ":lua vim.diagnostic.open_float({})<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F9>", ":lua vim.diagnostic.goto_next({})<CR>", { noremap = true, silent = true })

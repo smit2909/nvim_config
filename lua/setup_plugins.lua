@@ -1,5 +1,4 @@
 -- setup plugins
-require("setup.colors")
 require("setup.lsp")
 require("setup.null_ls")
 require("setup.lspkind")
@@ -19,3 +18,4 @@ require("setup.project")
 require("setup.gotest")
 require("setup.symbols_outline")
 require("setup.rust")
+require("setup.colors")
