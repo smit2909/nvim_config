@@ -39,7 +39,7 @@ augroup code_fmt
   autocmd!
   autocmd BufWritePre *.go lua goimports(100)
   "autocmd BufWritePost *.js,*.html,*.go,*.json,*.proto FormatWrite
-  autocmd BufWritePre  *.py,*.go,*.rs lua vim.lsp.buf.format()
+  autocmd BufWritePre  *.py,*.go,*.rs lua vim.lsp.buf.formatting_sync()
 augroup END
 
 augroup highlight_yank

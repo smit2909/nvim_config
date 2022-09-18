@@ -5,7 +5,7 @@ local path = util.path
 local pop_opts = { border = "rounded", max_width = 80 }
 
 -- virtual text is disabled
-vim.diagnostic.config({ virtual_text = false, severity_sort = true })
+vim.diagnostic.config({ virtual_text = true, severity_sort = true })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, pop_opts)
