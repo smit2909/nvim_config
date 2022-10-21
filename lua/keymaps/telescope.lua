@@ -17,15 +17,16 @@
 vim.api.nvim_set_keymap("n", "<leader>ps", ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > ')})<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>pq", ":lua require('telescope.builtin').quickfix()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files()<CR>", {noremap = true, silent = true})
+--vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files({layout_config = { preview_width = 0.7 }})<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-r>", ":lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy({}))<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<A-b>", ":lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_ivy({}))<CR>",
+vim.api.nvim_set_keymap("n", "<A-b>", ":lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_ivy({layout_config = { preview_width = 0.7 }, shorten_path=true}))<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<A-s>",
-                        ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols(require('telescope.themes').get_ivy({ignore_symbols={'variable', 'field'}}))<CR>",
+                        ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols(require('telescope.themes').get_ivy({ layout_config = { preview_width = 0.7 }, ignore_symbols={'variable', 'field'}, shorten_path=true}))<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>s", ":lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy({bufnr=0}))<CR>",
+vim.api.nvim_set_keymap("n", "<leader>s", ":lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy({ layout_config = { preview_width = 0.7 }, bufnr=0}))<CR>",
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ws", ":lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy({}))<CR>",
                         {noremap = true, silent = true})

@@ -22,5 +22,5 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 --  following options are the default
 --  each of these are documented in `:help nvim-tree.OPTION_NAME`
 
- vim.api.nvim_set_keymap("n", "<leader>pv", ":NERDTreeFind<CR>zz", { noremap = true, silent = true })
- vim.api.nvim_set_keymap("", "<leader>n", ":NERDTreeToggle<CR>", { noremap = true, silent = true })
+ --vim.api.nvim_set_keymap("n", "<leader>pv", ":NERDTreeFind<CR>zz", { noremap = true, silent = true })
+ --vim.api.nvim_set_keymap("", "<leader>n", ":NERDTreeToggle<CR>", { noremap = true, silent = true })

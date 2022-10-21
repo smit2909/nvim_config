@@ -1,12 +1,12 @@
 vim.cmd [[packadd packer.nvim]]
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
--- augroup packer_user_config
--- autocmd!
--- autocmd BufWritePost plugins.lua source <afile> | PackerSync
--- augroup end
--- ]]
+ vim.cmd [[
+ augroup packer_user_config
+ autocmd!
+ autocmd BufWritePost plugins.lua source <afile> | PackerSync
+ augroup end
+ ]]
 
 require('packer').init {
     display = {
@@ -27,18 +27,18 @@ return require('packer').startup(function(use)
     use { 'tjdevries/gruvbuddy.nvim', requires = { 'tjdevries/colorbuddy.vim' } }
     --use {'christianchiarulli/nvcode-color-schemes.vim'}
     --use {'jsit/toast.vim'}
-    use { 'RRethy/nvim-base16' }
-    --use {'sainnhe/sonokai'}
     --use {'luisiacc/gruvbox-baby'}
-    --use {'arzg/vim-colors-xcode'}
+    use {'arzg/vim-colors-xcode'}
     use 'folke/tokyonight.nvim'
     use 'navarasu/onedark.nvim'
+    use 'ofirgall/ofirkai.nvim'
     -- statusline, indentline, barbar
-    --use 'NTBBloodbath/galaxyline.nvim'
     use 'nvim-lualine/lualine.nvim'
-    use { 'romgrk/barbar.nvim' }
+    --use 'tjdevries/express_line.nvim'
+    use { 'romgrk/barbar.nvim' , commit = "f89dfb8"}
     use 'lukas-reineke/indent-blankline.nvim'
-
+    --use {'phha/zenburn.nvim'}
+    --use 'ciaranm/inkpot'
     use { 'stevearc/dressing.nvim' } --no setup required
 
     -- lsp stuff
@@ -62,10 +62,10 @@ return require('packer').startup(function(use)
     }
 
     -- nerdtree stuff
-    use 'preservim/nerdtree'
-    use 'jistr/vim-nerdtree-tabs'
-    use 'Xuyuanp/nerdtree-git-plugin'
-
+    --use 'preservim/nerdtree'
+    --use 'jistr/vim-nerdtree-tabs'
+    --use 'Xuyuanp/nerdtree-git-plugin'
+    use 'nvim-tree/nvim-tree.lua'
     -- git stuff
     use 'tpope/vim-fugitive'
     use 'lewis6991/gitsigns.nvim'
@@ -122,4 +122,19 @@ return require('packer').startup(function(use)
     }
 
     use 'ThePrimeagen/vim-be-good'
+    use 'ja-ford/delaytrain.nvim'
+
+    --use({
+      --"folke/noice.nvim",
+      --event = "VimEnter",
+      --config = function()
+        --require("noice").setup()
+      --end,
+      --requires = {
+        ---- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        --"MunifTanjim/nui.nvim",
+        --"rcarriga/nvim-notify",
+        --"hrsh7th/nvim-cmp",
+        --}
+    --})
 end)

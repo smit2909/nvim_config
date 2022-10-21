@@ -39,7 +39,8 @@ augroup code_fmt
   autocmd!
   autocmd BufWritePre *.go lua goimports(100)
   "autocmd BufWritePost *.js,*.html,*.go,*.json,*.proto FormatWrite
-  autocmd BufWritePre  *.py,*.go,*.rs lua vim.lsp.buf.formatting_sync()
+  "autocmd BufWritePre  *.py,*.go,*.rs lua vim.lsp.buf.formatting_sync()
+  autocmd BufWritePre  *.py,*.go,*.rs lua vim.lsp.buf.format({timeout_ms = 3000})
 augroup END
 
 augroup highlight_yank
@@ -48,7 +49,7 @@ augroup highlight_yank
 augroup END
 
 autocmd FileType rust setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
+autocmd FileType NvimTree setlocal cursorline
 
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"

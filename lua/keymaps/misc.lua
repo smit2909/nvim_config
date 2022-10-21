@@ -104,7 +104,7 @@ map <A-0> <esc>
 -- Term
 -- ===========================================================================
 -- nnoremap <C-t> :ToggleTermToggleAll<CR>
-vim.api.nvim_set_keymap("n", "<C-t>", ":ToggleTerm<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-t>", ":ToggleTerm<CR>", { noremap = true, silent = true })
 
 -- ===========================================================================
 -- which key

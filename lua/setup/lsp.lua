@@ -32,23 +32,23 @@ end
 -- ============================================================================================================
 -- language server setups
 require('lspconfig')['pyright'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_init = function(client)
         client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
     end
 }
 
-require('lspconfig')['gopls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+require('lspconfig')['gopls'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
     root_dir = util.root_pattern("go.mod") }
-require('lspconfig')['vimls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+require('lspconfig')['vimls'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['bashls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+require('lspconfig')['bashls'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['yamlls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+require('lspconfig')['yamlls'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['html'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+require('lspconfig')['html'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
-require('lspconfig')['cssls'].setup { capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+require('lspconfig')['cssls'].setup { capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()) }
 
 require('lspconfig')['gopls'].setup {
     settings = { gopls = { analyses = { unusedparams = true }, staticcheck = true } }

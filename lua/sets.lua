@@ -27,6 +27,7 @@ set undodir=~/.config/nvim/undodir
 set undofile
 
 set termguicolors
+set cursorline " required for nvimtree
 set noshowmode
 "set showtabline=2
 set updatetime=50
