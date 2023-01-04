@@ -59,12 +59,32 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 ]]
 
 -- set colorscheme
-require('colorbuddy').colorscheme('gruvbuddy')
+--require('colorbuddy').colorscheme('gruvbuddy')
 --require("setup.onedark")
+--white = "#ffffff"
+--lilac = "#dbbfef"
+--lavender = "#a4a0e8"
+--comet = "#5a5977"
+--bossanova = "#452859"
+--midnight = "#3b224c"
+--revolver = "#281733"
 
+--silver = "#cccccc"
+--sirocco = "#697C81"
+--mint = "#9ff28f"
+--almond = "#eccdba"
+--chamois = "#E8DCA0"
+--honey = "#efba5d"
+
+--apricot = "#f47868"
+--lightning = "#ffcd1c"
+--delta = "#6F44F0"
 -- Lua
 vim.cmd [[
-  "hi Normal guibg=NONE ctermbg=NONE
+  hi Normal guibg=NONE ctermbg=NONE
   set termguicolors
-  "colorscheme tokyonight
+let g:onedark_config = {
+    \ 'style': 'darker',
+\}
+  colorscheme onedark
 ]]

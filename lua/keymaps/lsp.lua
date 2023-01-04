@@ -32,3 +32,6 @@ vim.api.nvim_set_keymap("n", "gp", ":lua require('goto-preview').goto_preview_de
 
 vim.api.nvim_set_keymap("n", "<F6>", ":lua require('setup.lsp').toggle_diagnostics()<CR>",
     { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>",
+    { noremap = true, silent = true })

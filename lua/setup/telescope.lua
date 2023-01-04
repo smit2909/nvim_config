@@ -31,6 +31,7 @@ function set_background(content)
 end
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('changed_files')
 
 local M = {}
 M.search_dotfiles = function()

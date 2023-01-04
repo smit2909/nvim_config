@@ -88,8 +88,10 @@ vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {noremap = true})
 vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {noremap = true})
 
 -- jump points and navigation
-vim.api.nvim_set_keymap("n", "<PageDown>", "<c-d>zz", {noremap = true})
-vim.api.nvim_set_keymap("n", "<PageUp>", "<c-u>zz", {noremap = true})
+--vim.api.nvim_set_keymap("n", "<PageDown>", "<c-d>zz", {noremap = true})
+--vim.api.nvim_set_keymap("n", "<PageUp>", "<c-u>zz", {noremap = true})
+vim.keymap.set({ 'n', 'x' }, '<PageUp>', "<Cmd>lua Scroll('<C-b>', 1, 1)<CR>")
+vim.keymap.set({ 'n', 'x' }, '<PageDown>', "<Cmd>lua Scroll('<C-f>', 1, 1)<CR>")
 -- moving between jumpoints > ctrl+o and ctrl+1
 -- change a paragragh,,like ciw/diw use cip/dip
 

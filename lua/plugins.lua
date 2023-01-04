@@ -25,13 +25,20 @@ return require('packer').startup(function(use)
     require('impatient')
     -- color scheme and related stuff
     use { 'tjdevries/gruvbuddy.nvim', requires = { 'tjdevries/colorbuddy.vim' } }
+    -- for smooth scrolling
+    use {
+        'declancm/cinnamon.nvim',
+        config = function() require('cinnamon').setup() end
+    }
     --use {'christianchiarulli/nvcode-color-schemes.vim'}
     --use {'jsit/toast.vim'}
     --use {'luisiacc/gruvbox-baby'}
-    use {'arzg/vim-colors-xcode'}
     use 'folke/tokyonight.nvim'
     use 'navarasu/onedark.nvim'
     use 'ofirgall/ofirkai.nvim'
+    use "rebelot/kanagawa.nvim"
+    --use "RRethy/nvim-base16"
+    --use 'drewtempelmeyer/palenight.vim'
     -- statusline, indentline, barbar
     use 'nvim-lualine/lualine.nvim'
     --use 'tjdevries/express_line.nvim'
@@ -89,10 +96,13 @@ return require('packer').startup(function(use)
         }
     }
     use "ahmedkhalf/project.nvim"
+    use "kylechui/nvim-surround"
+    use "windwp/nvim-autopairs"
+    use 'axkirillov/telescope-changed-files'
 
     -- miscellaoeous vim utils
     use 'milkypostman/vim-togglelist'
-    use { 'liuchengxu/vista.vim', opt = true, cmd = { "Vista" } }
+     --use { 'liuchengxu/vista.vim',cmd = { "Vista" } }
     use 'simrat39/symbols-outline.nvim'
     use 'preservim/nerdcommenter'
     use 'edluffy/specs.nvim'

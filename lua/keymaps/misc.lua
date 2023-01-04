@@ -8,8 +8,8 @@ vim.cmd [[
 let g:vista_sidebar_width = 40
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_close_on_jump = 1
-map <F8> :Vista!!<CR>
-" map <F8> :SymbolsOutline<CR>
+" map <F8> :Vista!!<CR>
+map <F8> :SymbolsOutline<CR>
 ]]
 
 -- ===========================================================================
@@ -110,3 +110,5 @@ vim.api.nvim_set_keymap("n", "<C-t>", ":ToggleTerm<CR>", { noremap = true, silen
 -- which key
 -- ===========================================================================
 require("which-key").setup {}
+require("nvim-surround").setup{}
+require("nvim-autopairs").setup{}
